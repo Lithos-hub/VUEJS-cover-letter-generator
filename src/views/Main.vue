@@ -3,6 +3,7 @@
     <v-row>
       <!-- ***************** MAIN CONTENT ***************** -->
       <v-col cols="9">
+        <!-- COMPONENT SIDEMENU -->
         <Maingenerator
           :colorBackground="color"
           :backgroundimg="imagepicked"

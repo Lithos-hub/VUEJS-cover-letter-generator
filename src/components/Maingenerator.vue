@@ -59,11 +59,14 @@
             outline
           ></v-select>
           <!-- ************** SELECT TECHNOLOGIES ************** -->
+          <small class="red--text" v-if="tech_selected.length > 8">
+            Oops. You can only choose up to 8 technologies!
+          </small>
           <v-combobox
             v-model="tech_selected"
             :items="technologies"
             item-text="language"
-            label="Choose your main technologies"
+            label="Choose your main technologies (Max 10)"
             multiple
             outlined
           ></v-combobox>
@@ -198,8 +201,9 @@
       </v-col>
 
       <!-- *************************************************************** RIGHT SHEET *************************************************************** -->
-      <v-col cols="6">
-        <label class="secondary white--text pa-2 rounded">Preview</label>
+
+      <v-col cols="6" class="mb-15">
+        <!-- <label class="secondary white--text pa-2 rounded">Preview</label> -->
         <vue-html2pdf
           :show-layout="true"
           :float-layout="false"
@@ -212,9 +216,6 @@
           pdf-format="a4"
           pdf-orientation="portrait"
           pdf-content-width="680"
-          @progress="onProgress($event)"
-          @hasStartedGeneration="hasStartedGeneration()"
-          @hasGenerated="hasGenerated($event)"
           ref="html2Pdf"
         >
           <div slot="pdf-content">
@@ -237,9 +238,11 @@
 
               <div id="right-sheet-content">
                 <v-row no-gutters>
-                  <h1 id="superior-job" class="text-uppercase">
-                    {{ job }}
-                  </h1>
+                  <div id="superior-job-wrapper" v-if="job">
+                    <h1 id="superior-job" class="text-uppercase">
+                      {{ job }}
+                    </h1>
+                  </div>
                   <v-col cols="9">
                     <div id="custom-color-text-header" :class="textcolor">
                       <h1 id="superior-name">{{ fullname }}</h1>
@@ -261,54 +264,15 @@
                   <v-col cols="3">
                     <!-- ************** IMAGE SELECTED ************** -->
 
-                    <v-img
-                      v-if="image"
-                      :src="imageUrl"
-                      width="170"
-                      :aspect-ratio="1"
-                      id="user-img"
-                    ></v-img>
-
-                    <v-row justify="space-around">
-                      <v-btn
-                        icon
-                        class="mt-5 social-icon"
-                        link
-                        v-bind:href="linkedin"
-                        v-if="linkedin.length > 0"
-                      >
-                        <v-icon :color="textcolor" class="lighten-4">mdi-linkedin</v-icon>
-                      </v-btn>
-                      <v-btn
-                        icon
-                        class="mt-5 social-icon"
-                        link
-                        v-bind:href="instagram"
-                        v-if="instagram.length > 0"
-                      >
-                        <v-icon :color="textcolor" class="lighten-4"
-                          >mdi-instagram</v-icon
-                        >
-                      </v-btn>
-                      <v-btn
-                        icon
-                        class="mt-5 social-icon"
-                        link
-                        v-bind:href="github"
-                        v-if="github.length > 0"
-                      >
-                        <v-icon :color="textcolor" class="lighten-4">mdi-github</v-icon>
-                      </v-btn>
-                      <v-btn
-                        icon
-                        class="mt-5 social-icon"
-                        link
-                        v-bind:href="facebook"
-                        v-if="facebook.length > 0"
-                      >
-                        <v-icon :color="textcolor" class="lighten-4">mdi-facebook</v-icon>
-                      </v-btn>
-                    </v-row>
+                    <div class="row d-block">
+                      <v-img
+                        v-if="image"
+                        :src="imageUrl"
+                        width="170"
+                        :aspect-ratio="1"
+                        id="user-img"
+                      ></v-img>
+                    </div>
                   </v-col>
                 </v-row>
                 <!-- ***********************SEPARATOR************************ -->
@@ -329,22 +293,35 @@
                       v-if="exp_selected != 'Beginner'"
                       style="background: transparent"
                     >
-                      <v-list-item :class="textcolor" id="custom-color-text-list"
+                      <v-list-item
+                        v-if="experience1"
+                        :class="textcolor"
+                        id="custom-color-text-list"
                         >{{ experience1 }} - {{ year1 }}</v-list-item
                       >
-                      <v-list-item :class="textcolor" id="custom-color-text-list"
+                      <v-list-item
+                        v-if="experience2"
+                        :class="textcolor"
+                        id="custom-color-text-list"
                         >{{ experience2 }} - {{ year2 }}</v-list-item
                       >
-                      <v-list-item :class="textcolor" id="custom-color-text-list"
+                      <v-list-item
+                        v-if="experience3"
+                        :class="textcolor"
+                        id="custom-color-text-list"
                         >{{ experience3 }} - {{ year3 }}</v-list-item
                       >
-                      <v-list-item :class="textcolor" id="custom-color-text-list"
+                      <v-list-item
+                        v-if="experience4"
+                        :class="textcolor"
+                        id="custom-color-text-list"
                         >{{ experience4 }} - {{ year4 }}</v-list-item
                       >
                     </v-list>
                   </div>
 
                   <!-- ***********************SEPARATOR************************ -->
+                  <div class="separator" v-if="tech_selected.length > 0"></div>
                   <div
                     v-if="tech_selected.length > 0"
                     class="text-center font-weight-bold"
@@ -356,20 +333,50 @@
                   width="100%"
                   max-height="350"
                   elevation="10"
-                  class="pa-2"
                   rounded
-                  v-if="tech_selected.length > 0"
+                  class="pa-2"
+                  v-if="tech_selected.length > 0 && tech_selected.length <= 8"
                 >
-                  <v-row>
+                  <v-row no-gutters>
                     <v-col v-for="(tech, i) in tech_selected" :key="i">
-                      <div>
+                      <div id="tech-selected-wrapper">
                         <v-icon color="primary" id="tech-icon">{{ tech.icon }}</v-icon>
-                        <p>{{ tech.language }}</p>
+                        <p class="text-center mx-auto tech-text">{{ tech.language }}</p>
                       </div>
                     </v-col>
                   </v-row>
                 </v-sheet>
                 <!-- ***********************SEPARATOR************************ -->
+                <div class="row d-block mt-10">
+                  <div
+                    class="social-icon"
+                    v-bind:href="linkedin"
+                    v-if="linkedin.length > 0"
+                  >
+                    <v-icon :color="textcolor" class="lighten-4">mdi-linkedin</v-icon>
+                    <p class="social-icon-text my-auto">{{ linkedin }}</p>
+                  </div>
+                  <div
+                    class="social-icon"
+                    v-bind:href="instagram"
+                    v-if="instagram.length > 0"
+                  >
+                    <v-icon :color="textcolor" class="lighten-4">mdi-instagram</v-icon>
+                    <p class="social-icon-text my-auto">{{ instagram }}</p>
+                  </div>
+                  <div class="social-icon" v-bind:href="github" v-if="github.length > 0">
+                    <v-icon :color="textcolor" class="lighten-4">mdi-github</v-icon>
+                    <p class="social-icon-text my-auto">{{ github }}</p>
+                  </div>
+                  <div
+                    class="social-icon"
+                    v-bind:href="facebook"
+                    v-if="facebook.length > 0"
+                  >
+                    <v-icon :color="textcolor" class="lighten-4">mdi-facebook</v-icon>
+                    <p class="social-icon-text my-auto">{{ facebook }}</p>
+                  </div>
+                </div>
               </div>
             </v-sheet>
           </div>
@@ -588,9 +595,9 @@ export default {
   }
 
   #user-img {
-    border-radius: 5px;
+    border-radius: 10px;
+    margin-top: 40px;
     box-shadow: 3px 2px 5px darkslategray;
-    position: relative;
     float: right;
   }
 
@@ -598,19 +605,25 @@ export default {
     font-family: $style1;
     letter-spacing: 5px;
     font-size: 2em;
-    margin-top: 0px;
+    margin-top: 20px;
+
     text-align: left;
   }
 
+  #superior-job-wrapper {
+    background: #151515;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
   #superior-job {
-    font-family: $style4;
-    letter-spacing: 15px;
-    font-size: 2em;
-    margin-bottom: 30px;
     color: white;
-    background: url("../assets/img/generator.jpg");
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-weight: bold;
+    letter-spacing: 20px;
   }
 
   #custom-color-text-header {
@@ -631,11 +644,22 @@ export default {
     -webkit-text-fill-color: transparent;
   }
 
+  #tech-selected-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+  }
+
   #tech-icon {
     font-size: 2em;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
     background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  }
+
+  .tech-text {
+    color: black !important;
   }
 
   #background-image {
@@ -648,17 +672,32 @@ export default {
   }
 
   #right-sheet-content {
-    margin: 40px;
     position: absolute;
-    top: 30px;
+    top: 0px;
+    margin: 50px;
   }
-
   .social-icon {
-    max-width: 5px;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
 
     &:hover {
       text-decoration: none;
     }
+  }
+  .separator {
+    height: 2px;
+    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+  }
+
+  .social-icon-text {
+    display: flex;
+    margin-left: 5px;
+    font-weight: bold;
+    margin-top: 2px;
   }
 }
 
@@ -705,14 +744,7 @@ export default {
   }
 
   #superior-job {
-    font-family: $style4;
-    letter-spacing: 20px;
-    font-size: 2.3em;
-    margin-bottom: 50px;
     color: white;
-    background: url("../assets/img/generator.jpg");
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   #custom-color-text-header {
@@ -733,11 +765,22 @@ export default {
     -webkit-text-fill-color: transparent;
   }
 
+  #tech-selected-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .tech-text {
+    color: black !important;
+  }
+
   #tech-icon {
-    font-size: 2.5em;
+    font-size: 2em;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
     background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   #background-image {
@@ -750,16 +793,31 @@ export default {
   }
 
   #right-sheet-content {
-    margin: 50px;
     position: absolute;
-    top: 50px;
+    top: 0px;
+    margin: 50px;
   }
 
   .social-icon {
-    max-width: auto;
+    margin-top: 15px;
     &:hover {
       text-decoration: none;
     }
+  }
+
+  .separator {
+    height: 2px;
+    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+  }
+
+  .social-icon-text {
+    display: flex;
+    margin-left: 25px;
+    font-weight: bold;
+    margin-top: 2px;
   }
 }
 </style>

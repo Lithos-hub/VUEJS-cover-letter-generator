@@ -14,7 +14,7 @@
       <v-row>
         <v-col cols="12" class="align-center">
           <div id="center-elements">
-            <h1 class="pa-5" id="title">Cover Letter generator</h1>
+            <h1 class="pa-5" id="title">Cover Letter Generator</h1>
             <router-link to="/main" id="start-btn">
               <v-btn primary dark class="centered btn-animated" large outlined
                 >Start</v-btn
@@ -33,6 +33,12 @@
       {{ year }} - Carlos Segura García
     </v-footer>
     <p id="version" class="ma-auto align-content-end">
+      <a
+        href="https://github.com/Lithos-hub/VUEJS-cover-letter-generator"
+        style="text-decoration: none"
+      >
+        <v-btn icon> <v-icon style="color: purple">mdi-github</v-icon> </v-btn>
+      </a>
       Version: {{ version }}.{{ subversion }}
     </p>
   </div>
@@ -46,7 +52,7 @@ export default {
     return {
       year: new Date().getFullYear(),
       version: 1,
-      subversion: 0,
+      subversion: 1,
     };
   },
 };
