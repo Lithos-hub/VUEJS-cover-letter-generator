@@ -244,7 +244,10 @@
                     </h1>
                   </div>
                   <v-col cols="9">
-                    <div id="custom-color-text-header" :class="textcolor">
+                    <div
+                      id="custom-color-text-header"
+                      v-bind:style="{ color: textcolor }"
+                    >
                       <h1 id="superior-name">{{ fullname }}</h1>
                       <!-- ************** SHOWING - MAIN DATA ************** -->
                       <div v-if="fullname.length > 1">
@@ -264,7 +267,7 @@
                   <v-col cols="3">
                     <!-- ************** IMAGE SELECTED ************** -->
 
-                    <div class="row d-block">
+                    <div class="row d-inline">
                       <v-img
                         v-if="image"
                         :src="imageUrl"
@@ -276,7 +279,7 @@
                   </v-col>
                 </v-row>
                 <!-- ***********************SEPARATOR************************ -->
-                <div id="custom-color-text-body" :class="textcolor">
+                <div id="custom-color-text-body" v-bind:style="{ color: textcolor }">
                   <div
                     v-if="exp_selected.length > 0"
                     class="text-left mt-5 font-weight-bold"
@@ -293,29 +296,25 @@
                       v-if="exp_selected != 'Beginner'"
                       style="background: transparent"
                     >
-                      <v-list-item
-                        v-if="experience1"
-                        :class="textcolor"
-                        id="custom-color-text-list"
-                        >{{ experience1 }} - {{ year1 }}</v-list-item
+                      <v-list-item v-if="experience1"
+                        ><span v-bind:style="{ color: textcolor }"
+                          >{{ experience1 }} - {{ year1 }}</span
+                        ></v-list-item
                       >
-                      <v-list-item
-                        v-if="experience2"
-                        :class="textcolor"
-                        id="custom-color-text-list"
-                        >{{ experience2 }} - {{ year2 }}</v-list-item
+                      <v-list-item v-if="experience2"
+                        ><span v-bind:style="{ color: textcolor }"
+                          >{{ experience2 }} - {{ year2 }}</span
+                        ></v-list-item
                       >
-                      <v-list-item
-                        v-if="experience3"
-                        :class="textcolor"
-                        id="custom-color-text-list"
-                        >{{ experience3 }} - {{ year3 }}</v-list-item
+                      <v-list-item v-if="experience3"
+                        ><span v-bind:style="{ color: textcolor }"
+                          >{{ experience3 }} - {{ year3 }}</span
+                        ></v-list-item
                       >
-                      <v-list-item
-                        v-if="experience4"
-                        :class="textcolor"
-                        id="custom-color-text-list"
-                        >{{ experience4 }} - {{ year4 }}</v-list-item
+                      <v-list-item v-if="experience4"
+                        ><span v-bind:style="{ color: textcolor }"
+                          >{{ experience4 }} - {{ year4 }}</span
+                        ></v-list-item
                       >
                     </v-list>
                   </div>
@@ -353,28 +352,48 @@
                     v-bind:href="linkedin"
                     v-if="linkedin.length > 0"
                   >
-                    <v-icon :color="textcolor" class="lighten-4">mdi-linkedin</v-icon>
-                    <p class="social-icon-text my-auto">{{ linkedin }}</p>
+                    <v-icon v-bind:style="{ color: textcolor }">mdi-linkedin</v-icon>
+                    <p
+                      class="social-icon-text my-auto"
+                      v-bind:style="{ color: textcolor }"
+                    >
+                      {{ linkedin }}
+                    </p>
                   </div>
                   <div
                     class="social-icon"
                     v-bind:href="instagram"
                     v-if="instagram.length > 0"
                   >
-                    <v-icon :color="textcolor" class="lighten-4">mdi-instagram</v-icon>
-                    <p class="social-icon-text my-auto">{{ instagram }}</p>
+                    <v-icon v-bind:style="{ color: textcolor }">mdi-instagram</v-icon>
+                    <p
+                      class="social-icon-text my-auto"
+                      v-bind:style="{ color: textcolor }"
+                    >
+                      {{ instagram }}
+                    </p>
                   </div>
                   <div class="social-icon" v-bind:href="github" v-if="github.length > 0">
-                    <v-icon :color="textcolor" class="lighten-4">mdi-github</v-icon>
-                    <p class="social-icon-text my-auto">{{ github }}</p>
+                    <v-icon v-bind:style="{ color: textcolor }">mdi-github</v-icon>
+                    <p
+                      class="social-icon-text my-auto"
+                      v-bind:style="{ color: textcolor }"
+                    >
+                      {{ github }}
+                    </p>
                   </div>
                   <div
                     class="social-icon"
                     v-bind:href="facebook"
                     v-if="facebook.length > 0"
                   >
-                    <v-icon :color="textcolor" class="lighten-4">mdi-facebook</v-icon>
-                    <p class="social-icon-text my-auto">{{ facebook }}</p>
+                    <v-icon v-bind:style="{ color: textcolor }">mdi-facebook</v-icon>
+                    <p
+                      class="social-icon-text my-auto"
+                      v-bind:style="{ color: textcolor }"
+                    >
+                      {{ facebook }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -597,7 +616,6 @@ export default {
   #user-img {
     border-radius: 10px;
     margin-top: 40px;
-    box-shadow: 3px 2px 5px darkslategray;
     float: right;
   }
 
@@ -626,22 +644,9 @@ export default {
     letter-spacing: 20px;
   }
 
-  #custom-color-text-header {
-    text-align: left;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  #custom-color-text-body {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
   #custom-color-text-list {
     font-family: $style3;
     font-size: 1em;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
 
   #tech-selected-wrapper {
@@ -717,7 +722,7 @@ export default {
   #main-container {
     position: relative;
     top: 20px;
-    left: 55px;
+    left: 100px;
     margin: 0 auto;
     height: 100%;
   }
@@ -730,7 +735,6 @@ export default {
 
   #user-img {
     border-radius: 5px;
-    box-shadow: 3px 2px 5px darkslategray;
     position: relative;
     float: right;
   }
@@ -743,26 +747,18 @@ export default {
     text-align: left;
   }
 
+  #superior-job-wrapper {
+    width: 100%;
+  }
+
   #superior-job {
     color: white;
-  }
-
-  #custom-color-text-header {
-    text-align: left;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  #custom-color-text-body {
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 2em;
   }
 
   #custom-color-text-list {
     font-family: $style3;
-    font-size: 1.5em;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-size: 1.2em;
   }
 
   #tech-selected-wrapper {
@@ -795,7 +791,7 @@ export default {
   #right-sheet-content {
     position: absolute;
     top: 0px;
-    margin: 50px;
+    margin: 40px;
   }
 
   .social-icon {

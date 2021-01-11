@@ -70,7 +70,11 @@
 
             <!-- ***************** TEXT COLOR INPUT ***************** -->
             <p class="font-weight-bold text-start my-5">Main text color</p>
-            <label class="cyan--text">Write a color</label>
+            <label class="cyan--text"
+              >Write a color <br /><span class="white--text"
+                >(Text, Hex and RGB are available)</span
+              ></label
+            >
             <input
               type="text"
               v-model="textcolor"
