@@ -8,6 +8,15 @@ A preview of the document is automatically generated in real time.
                 
 Funtionalities of this app will be improving with future versions, adding new features too.
 
+Version 1.1
+
+* Fixes and changes in generator system.
+
+Version 1.2
+
+* Added error 404 page.
+* Early version of the new CV generator.
+
 ## Project setup
 ```
 npm install

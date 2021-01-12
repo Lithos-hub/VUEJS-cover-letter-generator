@@ -88,17 +88,17 @@
       </v-col>
 
       <v-col id="col-comeback-btn">
-        <router-link to="/" style="text-decoration: none;">
-          <v-btn class="orange mt-5 white--text" id="comeback-btn">Come back</v-btn>
-        </router-link>
+        <comeback-btn />
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
+import ComebackBtn from '../components/Comeback-btn.vue'
 
 export default {
+  components: { ComebackBtn },
   data() {
     return {
       sheet: false

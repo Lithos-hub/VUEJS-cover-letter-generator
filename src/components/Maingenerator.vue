@@ -1,18 +1,13 @@
 <template>
-  <v-container fluid id="main-container">
-    <nav id="top-bar">
-      <router-link to="/" id="come-back-btn">
-        <v-btn color="orange" dark tile large
-          >Come back <v-icon right dark> mdi-backburger </v-icon></v-btn
-        >
-      </router-link>
-      <v-btn color="red" dark tile large @click="savePDF"
+  <v-container id="main-container">
+    <nav id="top-bar" class="mt-5">
+      <comeback-btn />
+      <v-btn color="red darken-2" dark tile large @click="savePDF" id="download-pdf-btn"
         >Download PDF
-        <small>(Beta)</small>
         <v-icon right dark> mdi-download </v-icon>
       </v-btn>
     </nav>
-    <v-row>
+    <v-row class="mt-15">
       <v-col cols="6">
         <!-- *************************************************************** LEFT SHEET *************************************************************** -->
         <v-sheet height="100%" width="100%" class="pa-8" elevation="10" id="left-sheet">
@@ -31,12 +26,7 @@
               </v-col>
             </v-row>
             <!-- ************** JOB SELECTOR ************** -->
-            <v-select
-              :items="selectJobs"
-              label="Select your job"
-              v-model="job"
-              outlined
-            ></v-select>
+            <v-text-field label="Write your job position" v-model="job"></v-text-field>
           </v-form>
           <!-- ************** EXPERIENCE SELECTOR ************** -->
           <form>
@@ -202,7 +192,7 @@
 
       <!-- *************************************************************** RIGHT SHEET *************************************************************** -->
 
-      <v-col cols="6" class="mb-15">
+      <v-col cols="6">
         <!-- <label class="secondary white--text pa-2 rounded">Preview</label> -->
         <vue-html2pdf
           :show-layout="true"
@@ -215,17 +205,17 @@
           :manual-pagination="true"
           pdf-format="a4"
           pdf-orientation="portrait"
-          pdf-content-width="680"
+          pdf-content-width="700"
           ref="html2Pdf"
         >
           <div slot="pdf-content">
             <v-sheet
               height="1110"
-              width="100%"
+              width="700"
               class="black--text"
               elevation="10"
               :color="colorBackground"
-              id="document"
+              id="right-sheet"
             >
               <!-- ************** BACKGROUND IMG SELECTED ************** -->
               <v-img
@@ -237,13 +227,13 @@
               ></v-img>
 
               <div id="right-sheet-content">
+                <div id="superior-job-wrapper" v-if="job">
+                  <h1 id="superior-job" class="text-uppercase">
+                    {{ job }}
+                  </h1>
+                </div>
                 <v-row no-gutters>
-                  <div id="superior-job-wrapper" v-if="job">
-                    <h1 id="superior-job" class="text-uppercase">
-                      {{ job }}
-                    </h1>
-                  </div>
-                  <v-col cols="9">
+                  <v-col cols="8">
                     <div
                       id="custom-color-text-header"
                       v-bind:style="{ color: textcolor }"
@@ -264,15 +254,15 @@
                       </h4>
                     </div>
                   </v-col>
-                  <v-col cols="3">
+                  <v-col cols="4">
                     <!-- ************** IMAGE SELECTED ************** -->
 
                     <div class="row d-inline">
                       <v-img
                         v-if="image"
                         :src="imageUrl"
-                        width="170"
                         :aspect-ratio="1"
+                        width="100%"
                         id="user-img"
                       ></v-img>
                     </div>
@@ -407,6 +397,7 @@
 
 <script>
 import VueHtml2pdf from "vue-html2pdf";
+import ComebackBtn from "./Comeback-btn.vue";
 
 export default {
   name: "Maingenerator",
@@ -426,6 +417,7 @@ export default {
   },
   components: {
     VueHtml2pdf,
+    ComebackBtn,
   },
   data() {
     return {
@@ -435,26 +427,6 @@ export default {
       age: "",
       job: "",
       currentYear: new Date().getFullYear(),
-      selectJobs: [
-        "Front-end Developer",
-        "Back-end Developer",
-        "Full-stack Developer",
-        "QA Engineer",
-        "DevOps Engineer",
-        "Researcher",
-        "Engineering Manager",
-        "Technical Lead",
-        "Scrum Master",
-        "Product Owner",
-        "Proyect Manager",
-        "Technical Sales",
-        "HR Manager",
-        "IT Recruiter",
-        "Office Manager",
-        "Director",
-        "Finance Specialist",
-        "Marketing Specialist",
-      ],
       exp_selected: [],
       experience: [
         { time: "No experience", type: "Beginner" },
@@ -586,145 +558,31 @@ export default {
 }
 // ******* LAPTOP RESPONSIVE ******* //
 @media only screen and (min-width: 767px) {
-  #top-bar {
-    position: relative;
-    text-align: center;
-  }
-
-  #come-back-btn {
-    text-decoration: none;
-  }
-
-  #left-sheet {
-    font-size: 13px;
-  }
-
-  #main-container {
-    position: relative;
-    top: 20px;
-    left: 20px;
-    margin: 0 auto;
-    height: 100%;
-  }
-
-  #select_experience {
-    border: 1px solid #757575;
-    border-radius: 5px;
-    width: 100%;
-  }
-
-  #user-img {
-    border-radius: 10px;
-    margin-top: 40px;
-    float: right;
-  }
-
-  #superior-name {
-    font-family: $style1;
-    letter-spacing: 5px;
-    font-size: 2em;
-    margin-top: 20px;
-
-    text-align: left;
-  }
-
-  #superior-job-wrapper {
-    background: #151515;
-    text-align: center;
-    justify-content: center;
-    width: 100%;
-    margin: 0 auto;
-    padding: 5px;
-    border-radius: 10px;
-  }
-
-  #superior-job {
-    color: white;
-    font-weight: bold;
-    letter-spacing: 20px;
-  }
-
-  #custom-color-text-list {
-    font-family: $style3;
-    font-size: 1em;
-  }
-
-  #tech-selected-wrapper {
-    margin: 0 auto;
-    text-align: center;
-    padding: 10px;
-  }
-
-  #tech-icon {
-    font-size: 2em;
-    color: white !important;
-    padding: 10px;
-    border-radius: 10px;
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-  }
-
-  .tech-text {
-    color: black !important;
-  }
-
-  #background-image {
-    position: absolute;
-    z-index: 0;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-  }
-
-  #right-sheet-content {
-    position: absolute;
-    top: 0px;
-    margin: 50px;
-  }
-  .social-icon {
-    margin: 0 auto;
-    position: relative;
-    display: flex;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-  .separator {
-    height: 2px;
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-    width: 100%;
-    border-radius: 10px;
-    margin: 20px;
-  }
-
-  .social-icon-text {
-    display: flex;
-    margin-left: 5px;
-    font-weight: bold;
-    margin-top: 2px;
-  }
-}
-
-// ******* DESKTOP RESPONSIVE ******* //
-@media only screen and (min-width: 1370px) {
-  #top-bar {
-    position: relative;
-    text-align: center;
-  }
   #left-sheet {
     font-size: 20px;
   }
+
+  #right-sheet {
+    position: relative;
+  }
   #come-back-btn {
     text-decoration: none;
+    position: absolute;
+    left: 0px;
+    z-index: 99999;
+  }
+
+  #download-pdf-btn {
+    position: absolute;
+    right: 0px;
+    z-index: 99999;
   }
 
   #main-container {
     position: relative;
-    top: 20px;
-    left: 100px;
-    margin: 0 auto;
+    margin: 20px;
     height: 100%;
+    width: 100%;
   }
 
   #select_experience {
@@ -735,8 +593,8 @@ export default {
 
   #user-img {
     border-radius: 5px;
-    position: relative;
-    float: right;
+    margin: 20px;
+    max-width: 170px;
   }
 
   #superior-name {
@@ -748,7 +606,14 @@ export default {
   }
 
   #superior-job-wrapper {
+    top: 150px;
+    background: #151515;
+    text-align: center;
+    justify-content: center;
     width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 10px;
   }
 
   #superior-job {
@@ -791,7 +656,133 @@ export default {
   #right-sheet-content {
     position: absolute;
     top: 0px;
-    margin: 40px;
+    margin: 80px;
+  }
+
+  .social-icon {
+    margin-top: 15px;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .separator {
+    height: 2px;
+    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+    width: 100%;
+    border-radius: 10px;
+    margin: 20px;
+  }
+
+  .social-icon-text {
+    display: flex;
+    margin-left: 25px;
+    font-weight: bold;
+    margin-top: 2px;
+  }
+}
+
+// ******* DESKTOP RESPONSIVE ******* //
+@media only screen and (min-width: 1370px) {
+  #left-sheet {
+    font-size: 20px;
+  }
+
+  #right-sheet {
+    position: relative;
+  }
+  #come-back-btn {
+    text-decoration: none;
+    position: absolute;
+    left: 0px;
+    z-index: 99999;
+  }
+
+  #download-pdf-btn {
+    position: absolute;
+    right: 0px;
+    z-index: 99999;
+  }
+
+  #main-container {
+    position: relative;
+    margin: 50px;
+    height: 100%;
+    width: 100%;
+  }
+
+  #select_experience {
+    border: 1px solid #757575;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  #user-img {
+    border-radius: 5px;
+    margin: 20px;
+    max-width: 170px;
+  }
+
+  #superior-name {
+    font-family: $style1;
+    letter-spacing: 5px;
+    font-size: 2.5em;
+    margin-top: 30px;
+    text-align: left;
+  }
+
+  #superior-job-wrapper {
+    top: 150px;
+    background: #151515;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  #superior-job {
+    color: white;
+    font-size: 2em;
+  }
+
+  #custom-color-text-list {
+    font-family: $style3;
+    font-size: 1.2em;
+  }
+
+  #tech-selected-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .tech-text {
+    color: black !important;
+  }
+
+  #tech-icon {
+    font-size: 2em;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+  }
+
+  #background-image {
+    position: absolute;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  #right-sheet-content {
+    position: absolute;
+    top: 0px;
+    margin: 100px;
   }
 
   .social-icon {

@@ -5,6 +5,9 @@ import Home from '../views/Home.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  { path: '/404',  
+    component: () => import(/* webpackChunkName: "about" */ '../views/404.vue') },  
+  { path: '*', redirect: '/404' },  
   {
     path: '/',
     name: 'Home',
@@ -13,19 +16,28 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/main',
-    name: 'Main',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Main.vue')
-  }
+    path: '/changelog',
+    name: 'Changelog',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Changelog.vue')
+  },
+  {
+    path: '/cover-letter-generator',
+    name: 'Cover Letter Generator',
+    component: () => import(/* webpackChunkName: "about" */ '../views/CL-generator.vue')
+  },
+  {
+    path: '/cv-generator',
+    name: 'CV Generator',
+    component: () => import(/* webpackChunkName: "about" */ '../views/CV-generator.vue')
+  },
+  {
+    path: '/cv-generator/alea',
+    name: 'Alea',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Template-Alea.vue')
+  },
 ]
 
 const router = new VueRouter({

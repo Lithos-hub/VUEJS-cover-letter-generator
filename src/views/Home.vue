@@ -11,34 +11,57 @@
       <v-img src="../assets/img/clouds.png" width="10%" class="cloud clouds8"></v-img>
     </div>
     <div class="container">
-      <v-row>
-        <v-col cols="12" class="align-center">
+      <v-row no-gutters>
+        <v-col cols="3"></v-col>
+        <v-col cols="6" class="align-center">
           <div id="center-elements">
-            <h1 class="pa-5" id="title">Cover Letter Generator</h1>
-            <router-link to="/main" id="start-btn">
-              <v-btn primary dark class="centered btn-animated" large outlined
-                >Start</v-btn
-              >
-            </router-link>
+            <h1 id="title">CV / Cover Letter Generator</h1>
+
+            <v-row class="pa-2 rounded">
+              <h4 class="white--text">Start making a</h4>
+              <v-col cols="3"></v-col>
+              <v-col cols="3">
+                <router-link to="/cv-generator" style="text-decoration: none">
+                  <v-btn class="cv-gen-btn d-inline btn-animated">Curriculum Vitae</v-btn>
+                </router-link>
+              </v-col>
+              <v-col cols="3">
+                <router-link to="/cover-letter-generator" style="text-decoration: none">
+                  <v-btn class="cl-gen-btn d-inline btn-animated">Cover Letter</v-btn>
+                </router-link>
+              </v-col>
+              <v-col cols="3"></v-col>
+            </v-row>
+
             <div class="d-block">
-              <router-link to="/about" id="about-btn">
-                <v-btn class="error centered mt-5 ma-auto btn-animated">About</v-btn>
+              <router-link to="/about" style="text-decoration: none">
+                <v-btn class="error mt-15 ma-auto btn-animated">About</v-btn>
               </router-link>
             </div>
           </div>
         </v-col>
+        <v-col cols="3"></v-col>
       </v-row>
     </div>
-    <v-footer height="50" class="transparent text-right" id="footer">
+    <v-footer height="60" class="transparent text-right" id="footer">
       {{ year }} - Carlos Segura García
     </v-footer>
     <p id="version" class="ma-auto align-content-end">
+      <router-link to="/changelog" style="text-decoration: none">
+        <v-btn color="green" dark class="font-weight-bold" id="changelog-btn"
+          >Changelog</v-btn
+        >
+      </router-link>
+
       <a
         href="https://github.com/Lithos-hub/VUEJS-cover-letter-generator"
         style="text-decoration: none"
       >
-        <v-btn icon> <v-icon style="color: purple">mdi-github</v-icon> </v-btn>
+        <v-btn color="secondary darken-2" class="mx-2">
+          <v-icon style="color: white">mdi-github</v-icon>
+        </v-btn>
       </a>
+
       Version: {{ version }}.{{ subversion }}
     </p>
   </div>
@@ -52,7 +75,7 @@ export default {
     return {
       year: new Date().getFullYear(),
       version: 1,
-      subversion: 1,
+      subversion: 2,
     };
   },
 };
@@ -82,7 +105,7 @@ body {
 
   #title {
     font-size: 3em;
-    background-image: url("../assets/img/text1.jpg");
+    background-image: url("../assets/img/home-title.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
@@ -244,7 +267,7 @@ body {
 
   #title {
     font-size: 6em;
-    background-image: url("../assets/img/text1.jpg");
+    background-image: url("../assets/img/home-title.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
@@ -259,7 +282,8 @@ body {
     position: absolute;
     font-weight: 100;
     bottom: 0px;
-    color: aquamarine;
+    color: white;
+    font-family: $style3;
     box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.445);
     width: 100%;
   }
@@ -271,8 +295,7 @@ body {
     bottom: 10px;
   }
 
-  #start-btn,
-  #about-btn {
+  .btn-animated {
     text-decoration: none;
     transition: 0.5s;
   }
@@ -405,12 +428,29 @@ body {
   }
 
   #title {
-    font-size: 10em;
-    background-image: url("../assets/img/text1.jpg");
+    font-size: 8em;
+    background-image: url("../assets/img/home-title.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 100px;
+  }
+
+  .cv-gen-btn {
+    background-image: url("../assets/img/gradient1.jpg");
+    background-position: center;
+    background-size: cover;
+    color: white !important;
+    font-weight: bold !important;
+  }
+
+  .cl-gen-btn {
+    background-image: url("../assets/img/gradient2.jpg");
+    background-position: bottom;
+    background-size: cover;
+    color: white !important;
+    font-weight: bold !important;
   }
 
   #center-elements {
@@ -419,9 +459,10 @@ body {
 
   #footer {
     position: absolute;
+    font-family: $style3;
     font-weight: 100;
     bottom: 0px;
-    color: aquamarine;
+    color: white;
     box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.445);
     width: 100%;
   }
@@ -433,8 +474,7 @@ body {
     bottom: 10px;
   }
 
-  #start-btn,
-  #about-btn {
+  .btn-animated {
     text-decoration: none;
     transition: 0.5s;
   }
