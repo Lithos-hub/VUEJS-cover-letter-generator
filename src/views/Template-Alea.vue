@@ -2,7 +2,7 @@
   <div class="select-template">
     <NavbarCL :sectionName="sectionName" />
 
-    <v-container class="mt-15">
+    <v-container class="mt-15 text-center">
       <comeback-btn class="comeback-btn d-inline" />
 
       <v-dialog v-model="dialog" width="500">
@@ -92,30 +92,74 @@
             <h4>Aditional information</h4>
             <h5 class="text-left cyan--text">Languages:</h5>
             <v-combobox
-              v-model="select1"
-              :items="language_items"
-              label="Select languages"
+              v-model="lang_selected"
+              :items="languages"
+              item-text="name"
+              label="Select spoken languages"
               multiple
               chips
               dark
             >
-              <template v-slot:selection="data">
-                <v-chip
-                  :key="JSON.stringify(data.item)"
-                  v-bind="data.attrs"
-                  :input-value="data.selected"
-                  :disabled="data.disabled"
-                  @click:close="data.parent.selectItem(data.item)"
-                >
-                  <v-avatar
-                    class="accent white--text"
-                    left
-                    v-text="data.item.slice(0, 1).toUpperCase()"
-                  ></v-avatar>
-                  {{ data.item }}
-                </v-chip>
-              </template>
             </v-combobox>
+            <h5 class="text-left cyan--text">Soft skills:</h5>
+            <v-combobox
+              v-model="softskills_selected"
+              :items="softskills"
+              label="My soft skills"
+              multiple
+              chips
+              dark
+            >
+            </v-combobox>
+            <h5 class="text-left cyan--text">Other skills:</h5>
+            <v-row no-gutters>
+              <v-col>
+                <v-checkbox
+                  v-model="driving_license"
+                  label="Driving license"
+                  dark
+                ></v-checkbox>
+              </v-col>
+              <v-col>
+                <v-checkbox
+                  v-model="graphic_design"
+                  label="Graphic design"
+                  dark
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+            <v-row no-gutters>
+              <v-col>
+                <v-checkbox
+                  v-model="docu_layout"
+                  label="Document layout"
+                  dark
+                ></v-checkbox>
+              </v-col>
+              <v-col>
+                <v-checkbox
+                  v-model="office_auto"
+                  label="Office automation"
+                  dark
+                ></v-checkbox>
+              </v-col>
+            </v-row>
+            <v-row no-gutters>
+              <v-col>
+                <v-checkbox
+                  v-model="database_man"
+                  label="Database management"
+                  dark
+                ></v-checkbox>
+              </v-col>
+              <v-col>
+                <v-checkbox
+                  v-model="commu_writing"
+                  label="Communication and writing"
+                  dark
+                ></v-checkbox>
+              </v-col>
+            </v-row>
           </v-col>
           <v-col>
             <!-- ****************************** EDUCATION ****************************** -->
@@ -390,7 +434,57 @@ export default {
       positionName4: "",
       expPeriod4: "",
       select1: [],
-      language_items: [],
+      languages: [],
+      lang_selected: [],
+      message_error: "",
+      softskills: [
+        "Imagination",
+        "Forward Thinking",
+        "Problem Solving",
+        "Strategy",
+        "Open-mindedness",
+        "Analytical Skills",
+        "Resilience",
+        "Project Management",
+        "Stress Management",
+        "Problem Sensitivity",
+        "Brainstorming",
+        "Troubleshooting",
+        "Restructuring",
+        "Process Improvement",
+        "Fast Learner",
+        "Adaptability",
+        "Resilience",
+        "Prioritizing",
+        "Quick Thinking",
+        "Attention to Detail",
+        "Team Building",
+        "Collaboration",
+        "Decision Making",
+        "Mentoring",
+        "Encouraging",
+        "Integrity",
+        "Reaching Consensus",
+        "Awareness for Diversity in Religion and Ethnicity",
+        "Focus",
+        "Engaging",
+        "Public Speaking",
+        "Articulation",
+        "Humor",
+        "Sales",
+        "Logical Thinking",
+        "Emotional Intelligence",
+        "Organization",
+        "Innovation",
+        "Investigation",
+      ],
+      softskills_selected: [],
+      driving_license: false,
+      graphic_design: false,
+      docu_layout: false,
+      office_auto: false,
+      database_man: false,
+      commu_writing: false,
     };
   },
   components: {
@@ -398,21 +492,22 @@ export default {
     ComebackBtn,
   },
   methods: {
-    getLanguageList() {
-      const api = "https://restcountries.eu/rest/v2/all";
+    async getLanguageList() {
+      let data = await axios.get("https://restcountries.eu/rest/v2/all");
+      let countries_array = [];
+      let languages_array = [];
 
-      axios.get(api).then(function (res) {
-        for (let i = 0; i < res.data.length; i++) {
-          const language_name = res.data[i].languages[0].name;
+      for (let i = 0; i < data.data.length; i++) {
+        countries_array = data.data[i].languages;
 
-          this.language_items.push(language_name);
-
-          const removeDuplicated = _.uniqBy(this.language_items, "name");
-          this.language_items = removeDuplicated;
+        for (let z = 0; z < countries_array.length; z++) {
+          languages_array.push(countries_array[z]);
         }
+      }
 
-        // console.log(languages);
-      });
+      const removeDuplicated = _.uniqBy(languages_array, "name");
+
+      this.languages = _.sortBy(removeDuplicated, (item) => item.name.toLowerCase());
     },
   },
   mounted() {

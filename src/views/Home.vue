@@ -17,27 +17,30 @@
           <div id="center-elements">
             <h1 id="title">CV / Cover Letter Generator</h1>
 
-            <v-row class="pa-2 rounded">
-              <h4 class="white--text">Start making a</h4>
-              <v-col cols="3"></v-col>
-              <v-col cols="3">
-                <router-link to="/cv-generator" style="text-decoration: none">
-                  <v-btn class="cv-gen-btn d-inline btn-animated">Curriculum Vitae</v-btn>
-                </router-link>
+            <v-row>
+              <v-col class="ma-auto text-right">
+                <h4 class="white--text">Start making a</h4>
               </v-col>
-              <v-col cols="3">
-                <router-link to="/cover-letter-generator" style="text-decoration: none">
-                  <v-btn class="cl-gen-btn d-inline btn-animated">Cover Letter</v-btn>
+              <v-col class="ma-auto text-left">
+                <router-link to="/select-template" style="text-decoration: none">
+                  <v-btn class="cv-gen-btn d-block btn-animated mr-auto"
+                    >Curriculum Vitae</v-btn
+                  >
                 </router-link>
-              </v-col>
-              <v-col cols="3"></v-col>
-            </v-row>
 
-            <div class="d-block">
-              <router-link to="/about" style="text-decoration: none">
-                <v-btn class="error mt-15 ma-auto btn-animated">About</v-btn>
-              </router-link>
-            </div>
+                <router-link to="/cover-letter-generator" style="text-decoration: none">
+                  <v-btn class="cl-gen-btn d-block mt-5 btn-animated mr-auto"
+                    >Cover Letter</v-btn
+                  >
+                </router-link>
+              </v-col>
+
+              <div class="d-block mt-15">
+                <router-link to="/about" style="text-decoration: none">
+                  <v-btn class="error mt-15 ma-auto btn-animated">About</v-btn>
+                </router-link>
+              </div>
+            </v-row>
           </div>
         </v-col>
         <v-col cols="3"></v-col>
@@ -62,7 +65,7 @@
         </v-btn>
       </a>
 
-      Version: {{ version }}.{{ subversion }}
+      Version: {{ major }}.{{ minor }}.{{ patch }}
     </p>
   </div>
 </template>
@@ -74,14 +77,15 @@ export default {
   data() {
     return {
       year: new Date().getFullYear(),
-      version: 1,
-      subversion: 2,
+      major: 1,
+      minor: 2,
+      patch: 2,
     };
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "src/scss/variables";
 
 body {
@@ -104,12 +108,33 @@ body {
   }
 
   #title {
-    font-size: 3em;
+    font-size: 2em;
     background-image: url("../assets/img/home-title.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 100px;
+  }
+
+  h4 {
+    text-align: center;
+  }
+
+  .cv-gen-btn {
+    background-image: url("../assets/img/gradient1.jpg");
+    background-position: center;
+    background-size: cover;
+    color: white !important;
+    font-weight: bold !important;
+  }
+
+  .cl-gen-btn {
+    background-image: url("../assets/img/gradient2.jpg");
+    background-position: bottom;
+    background-size: cover;
+    color: white !important;
+    font-weight: bold !important;
   }
 
   #center-elements {
@@ -120,8 +145,7 @@ body {
     position: absolute;
     font-weight: 100;
     bottom: 0px;
-    color: aquamarine;
-    box-shadow: 0px -3px 10px rgba(0, 0, 0, 0.445);
+    color: white;
     width: 100%;
   }
 
@@ -129,11 +153,10 @@ body {
     position: absolute;
     color: white;
     right: 10px;
-    bottom: 10px;
+    bottom: 70px;
   }
 
-  #start-btn,
-  #about-btn {
+  .btn-animated {
     text-decoration: none;
     transition: 0.5s;
   }
@@ -265,13 +288,34 @@ body {
     text-align: center;
   }
 
+  h4 {
+    text-align: right;
+  }
+
   #title {
-    font-size: 6em;
+    font-size: 5em;
     background-image: url("../assets/img/home-title.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    margin-bottom: 100px;
+  }
+
+  .cv-gen-btn {
+    background-image: url("../assets/img/gradient1.jpg");
+    background-position: center;
+    background-size: cover;
+    color: white !important;
+    font-weight: bold !important;
+  }
+
+  .cl-gen-btn {
+    background-image: url("../assets/img/gradient2.jpg");
+    background-position: bottom;
+    background-size: cover;
+    color: white !important;
+    font-weight: bold !important;
   }
 
   #center-elements {
@@ -425,6 +469,10 @@ body {
   .container {
     position: relative;
     text-align: center;
+  }
+
+  h4 {
+    text-align: right;
   }
 
   #title {

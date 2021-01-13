@@ -32,6 +32,15 @@
             <li class="list-changes">Aesthetic improvements.</li>
           </v-col>
         </v-row>
+
+        <v-row class="list-row">
+          <v-col class="ma-auto">
+            <div class="version">Version 1.2.2</div>
+          </v-col>
+          <v-col class="ma-auto">
+            <li class="list-changes">Added new options in CV generator.</li>
+          </v-col>
+        </v-row>
       </v-sheet>
     </v-container>
   </div>

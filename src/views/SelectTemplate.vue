@@ -2,7 +2,7 @@
   <div class="select-template">
     <NavbarCL :sectionName="sectionName" />
 
-    <v-container class="mt-15">
+    <v-container class="mt-15 text-center">
       <comeback-btn />
 
       <h1 class="title">Select a template</h1>

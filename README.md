@@ -21,6 +21,10 @@ Version 1.2.1
 
 * Aesthetic improvements.
 
+Version 1.2.2
+
+* Added new options in CV generator.
+
 ## Project setup
 ```
 npm install

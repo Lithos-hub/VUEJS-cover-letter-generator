@@ -1,14 +1,13 @@
 <template>
   <v-container id="main-container">
-    <nav id="top-bar" class="mt-5">
-      <comeback-btn />
-      <v-btn color="red darken-2" dark tile large @click="savePDF" id="download-pdf-btn"
-        >Download PDF
-        <v-icon right dark> mdi-download </v-icon>
-      </v-btn>
-    </nav>
-    <v-row class="mt-15">
-      <v-col cols="6">
+    <comeback-btn />
+    <v-btn color="red darken-2" dark tile large @click="savePDF" id="download-pdf-btn"
+      >Download PDF
+      <v-icon right dark> mdi-download </v-icon>
+    </v-btn>
+
+    <v-row>
+      <v-col lg="6" sm="12">
         <!-- *************************************************************** LEFT SHEET *************************************************************** -->
         <v-sheet height="100%" width="100%" class="pa-8" elevation="10" id="left-sheet">
           <!-- ************** PERSONAL INFO ************** -->
@@ -204,7 +203,7 @@
 
       <!-- *************************************************************** RIGHT SHEET *************************************************************** -->
 
-      <v-col cols="6">
+      <v-col lg="6" sm="12">
         <vue-html2pdf
           :show-layout="true"
           :float-layout="false"
@@ -571,37 +570,46 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "src/scss/variables";
 
 // ******* MOBILE RESPONSIVE ******* //
 @media only screen and (min-width: 360px) {
-}
-// ******* LAPTOP RESPONSIVE ******* //
-@media only screen and (min-width: 767px) {
-  #left-sheet {
-    font-size: 20px;
+  #right-sheet {
+    display: none;
   }
 
-  #right-sheet {
-    position: relative;
+  h4 {
+    font-size: 18px;
   }
+
+  ul {
+    list-style: none;
+  }
+
   #come-back-btn {
     text-decoration: none;
-    position: absolute;
+    position: relative;
     left: 0px;
     z-index: 99999;
   }
 
   #download-pdf-btn {
-    position: absolute;
+    position: relative;
     right: 0px;
     z-index: 99999;
   }
 
+  #upload-image-btn {
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: right bottom;
+  }
+
   #main-container {
     position: relative;
-    margin: 20px;
+    top: 50px;
+    margin: 0px;
     height: 100%;
     width: 100%;
   }
@@ -614,8 +622,8 @@ export default {
 
   #user-img {
     border-radius: 5px;
-    margin: 20px;
-    max-width: 170px;
+    margin: 10px;
+    max-width: 140px;
   }
 
   #superior-name {
@@ -662,7 +670,9 @@ export default {
     color: white !important;
     padding: 10px;
     border-radius: 10px;
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: top;
   }
 
   #background-image {
@@ -677,7 +687,143 @@ export default {
   #right-sheet-content {
     position: absolute;
     top: 0px;
-    margin: 80px;
+    padding: 20px;
+  }
+
+  .separator {
+    height: 2px;
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: right bottom;
+    width: 100%;
+  }
+}
+// ******* LAPTOP RESPONSIVE ******* //
+@media only screen and (min-width: 767px) {
+  #right-sheet {
+    display: block;
+    position: relative;
+    height: 1110px;
+    width: 550px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  #come-back-btn {
+    text-decoration: none;
+    position: absolute;
+    left: 0px;
+    z-index: 99999;
+  }
+
+  #download-pdf-btn {
+    position: absolute;
+    right: 0px;
+    z-index: 99999;
+  }
+
+  #upload-image-btn {
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: right bottom;
+  }
+
+  #main-container {
+    position: relative;
+    top: 50px;
+    margin: 0px;
+    height: 100%;
+    width: 100%;
+  }
+
+  #select_experience {
+    border: 1px solid #757575;
+    border-radius: 5px;
+    width: 100%;
+  }
+
+  #user-img {
+    border-radius: 5px;
+    margin: 10px;
+    max-width: 140px;
+  }
+
+  #superior-name {
+    font-family: $style1;
+    letter-spacing: 5px;
+    font-size: 2.5em;
+    margin-top: 30px;
+    text-align: left;
+  }
+
+  #superior-job-wrapper {
+    top: 150px;
+    background: #151515;
+    text-align: center;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  #superior-job {
+    color: white;
+    font-size: 2em;
+  }
+
+  #custom-color-text-list {
+    font-family: $style3;
+    font-size: 1.2em;
+  }
+
+  #tech-selected-wrapper {
+    margin: 0 auto;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .tech-text {
+    color: black !important;
+  }
+
+  #tech-icon {
+    font-size: 2em;
+    color: white !important;
+    padding: 10px;
+    border-radius: 10px;
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: top;
+  }
+
+  #background-image {
+    position: absolute;
+    z-index: 0;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+  }
+
+  #right-sheet-content {
+    position: absolute;
+    top: 0px;
+    padding: 20px;
+  }
+
+  .separator {
+    height: 2px;
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: right bottom;
+    width: 100%;
   }
 }
 
@@ -688,6 +834,7 @@ export default {
   }
 
   #right-sheet {
+    display: block;
     position: relative;
     height: 1110px;
     width: 700px;

@@ -29,9 +29,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/CL-generator.vue')
   },
   {
-    path: '/cv-generator',
-    name: 'CV Generator',
-    component: () => import(/* webpackChunkName: "about" */ '../views/CV-generator.vue')
+    path: '/select-template',
+    name: 'Select template',
+    component: () => import(/* webpackChunkName: "about" */ '../views/SelectTemplate.vue')
   },
   {
     path: '/cv-generator/alea',
