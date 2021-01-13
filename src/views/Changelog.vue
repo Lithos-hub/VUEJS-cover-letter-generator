@@ -7,7 +7,7 @@
 
         <v-row class="list-row">
           <v-col class="ma-auto">
-            <div class="version">Version 1.1</div>
+            <div class="version">Version 1.1.0</div>
           </v-col>
           <v-col class="ma-auto">
             <li class="list-changes d-inline">Fixes and changes in generator system.</li>
@@ -16,11 +16,20 @@
 
         <v-row class="list-row">
           <v-col class="ma-auto">
-            <div class="version">Version 1.2</div>
+            <div class="version">Version 1.2.0</div>
           </v-col>
           <v-col class="ma-auto">
             <li class="list-changes">Added error 404 page.</li>
             <li class="list-changes">Early version of the new CV generator.</li>
+          </v-col>
+        </v-row>
+
+        <v-row class="list-row">
+          <v-col class="ma-auto">
+            <div class="version">Version 1.2.1</div>
+          </v-col>
+          <v-col class="ma-auto">
+            <li class="list-changes">Aesthetic improvements.</li>
           </v-col>
         </v-row>
       </v-sheet>

@@ -11,7 +11,8 @@
       <v-col cols="6">
         <!-- *************************************************************** LEFT SHEET *************************************************************** -->
         <v-sheet height="100%" width="100%" class="pa-8" elevation="10" id="left-sheet">
-          <!-- ************** TEXT INPUTS ************** -->
+          <!-- ************** PERSONAL INFO ************** -->
+          <h4 class="my-5">Personal information</h4>
           <v-form>
             <v-row>
               <v-col>
@@ -19,35 +20,43 @@
                   type="text"
                   v-model="fullname"
                   label="Full name"
+                  filled
                 ></v-text-field>
               </v-col>
               <v-col>
-                <v-text-field type="text" v-model="age" label="Age"></v-text-field>
+                <v-text-field type="text" v-model="age" label="Age" filled></v-text-field>
               </v-col>
             </v-row>
-            <!-- ************** JOB SELECTOR ************** -->
-            <v-text-field label="Write your job position" v-model="job"></v-text-field>
+            <!-- ************** SELECT PLACE ************** -->
+            <v-select
+              v-model="place_selected"
+              :items="places"
+              label="Choose your living place"
+              filled
+            ></v-select>
+            <!-- ************** IMAGE FILE INPUT ************** -->
+            <h4 class="my-5">
+              Personal image <br /><span class="small"
+                >(any image format is allowed)</span
+              >
+            </h4>
+            <v-btn id="upload-image-btn" dark block @click="onUpload">UPLOAD IMAGE</v-btn>
+            <input
+              @change="onFileSelected"
+              type="file"
+              style="display: none"
+              ref="fileInput"
+              accept="image/*"
+            />
+            <!-- ************** JOB INPUT ************** -->
+            <h4 class="my-5">Job information</h4>
+            <v-text-field
+              label="Write your job position"
+              v-model="job"
+              filled
+            ></v-text-field>
           </v-form>
-          <!-- ************** EXPERIENCE SELECTOR ************** -->
-          <form>
-            <div class="form-group">
-              <label>Choose your experience</label>
-              <select class="form-control" id="select_experience" v-model="exp_selected">
-                <option v-for="(item, i) in experience" :key="i" v-bind:value="item.type">
-                  <v-list-item>
-                    {{ item.time }}
-                  </v-list-item>
-                </option>
-              </select>
-            </div>
-          </form>
-          <!-- ************** SELECT PLACE ************** -->
-          <v-select
-            v-model="place_selected"
-            :items="places"
-            label="Choose your living place"
-            outline
-          ></v-select>
+          <h4 class="my-5">Technologies and skills</h4>
           <!-- ************** SELECT TECHNOLOGIES ************** -->
           <small class="red--text" v-if="tech_selected.length > 8">
             Oops. You can only choose up to 8 technologies!
@@ -58,92 +67,95 @@
             item-text="language"
             label="Choose your main technologies (Max 10)"
             multiple
-            outlined
+            filled
           ></v-combobox>
-          <!-- ************** IMAGE FILE INPUT ************** -->
 
-          <v-btn color="blue" dark @click="onUpload">Upload image</v-btn>
-          <input
-            @change="onFileSelected"
-            type="file"
-            style="display: none"
-            ref="fileInput"
-            accept="image/*"
-          />
+          <!-- ************** EXPERIENCE SELECTOR ************** -->
+          <h4 class="my-5">My experience</h4>
+          <v-select
+            :items="experience"
+            v-model="exp_selected"
+            :item-value="'type'"
+            item-text="time"
+            filled
+            label="Select your experience"
+          ></v-select>
+          <div v-if="exp_selected != 'Beginner'">
+            <p class="my-5 small">
+              Do you have experience? You can indicate the name of the company and the
+              years you worked.
+            </p>
+            <v-row>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="experience1"
+                  label="Experience 1"
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="year1"
+                  label="Years (e.g.: 2015-2018)"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="experience2"
+                  label="Experience 2"
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="year2"
+                  label="Years (e.g.: 2015-2018)"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="experience3"
+                  label="Experience 3"
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="year3"
+                  label="Years (e.g.: 2015-2018)"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+            <v-row>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="experience4"
+                  label="Experience 4"
+                ></v-text-field>
+              </v-col>
+              <v-col>
+                <v-text-field
+                  type="text"
+                  v-model="year4"
+                  label="Years (e.g.: 2015-2018)"
+                ></v-text-field>
+              </v-col>
+            </v-row>
+          </div>
 
-          <p class="mt-5">
-            Do you have experience? You can indicate the name of the company and the years
-            you worked
-          </p>
-          <v-row>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="experience1"
-                label="Experience 1"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="year1"
-                label="Years (e.g.: 2015-2018)"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="experience2"
-                label="Experience 2"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="year2"
-                label="Years (e.g.: 2015-2018)"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="experience3"
-                label="Experience 3"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="year3"
-                label="Years (e.g.: 2015-2018)"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="experience4"
-                label="Experience 4"
-              ></v-text-field>
-            </v-col>
-            <v-col>
-              <v-text-field
-                type="text"
-                v-model="year4"
-                label="Years (e.g.: 2015-2018)"
-              ></v-text-field>
-            </v-col>
-          </v-row>
-          <!-- ************** SOCIAL MEDIA INPUT ************** -->
           <v-divider></v-divider>
 
+          <!-- ************** SOCIAL MEDIA INPUT ************** -->
           <v-form>
-            <label>You can add your social media (optional):</label>
+            <h4 class="my-5">Social media (optional):</h4>
             <v-row>
               <v-col cols="2" class="ma-auto">
                 <v-icon>mdi-linkedin</v-icon>
@@ -156,13 +168,13 @@
                 ></v-text-field>
               </v-col>
               <v-col cols="2" class="ma-auto">
-                <v-icon>mdi-instagram</v-icon>
+                <v-icon>mdi-stack-overflow</v-icon>
               </v-col>
               <v-col cols="10">
                 <v-text-field
                   type="text"
-                  v-model="instagram"
-                  label="Paste here your Instagram URL"
+                  v-model="stackoverflow"
+                  label="Paste here your Stack Overflow URL"
                 ></v-text-field>
               </v-col>
               <v-col cols="2" class="ma-auto">
@@ -193,7 +205,6 @@
       <!-- *************************************************************** RIGHT SHEET *************************************************************** -->
 
       <v-col cols="6">
-        <!-- <label class="secondary white--text pa-2 rounded">Preview</label> -->
         <vue-html2pdf
           :show-layout="true"
           :float-layout="false"
@@ -205,189 +216,199 @@
           :manual-pagination="true"
           pdf-format="a4"
           pdf-orientation="portrait"
-          pdf-content-width="700"
+          pdf-content-width="700px"
           ref="html2Pdf"
         >
-          <div slot="pdf-content">
-            <v-sheet
-              height="1110"
-              width="700"
-              class="black--text"
-              elevation="10"
-              :color="colorBackground"
-              id="right-sheet"
-            >
-              <!-- ************** BACKGROUND IMG SELECTED ************** -->
-              <v-img
-                :src="backgroundimg"
-                height="100%"
-                width="100%"
-                id="background_image"
-                v-if="backimgbtn"
-              ></v-img>
+          <div
+            :style="{ 'background-color': colorBackground }"
+            id="right-sheet"
+            slot="pdf-content"
+          >
+            <!-- ************** BACKGROUND IMG SELECTED ************** -->
+            <v-img
+              :src="backgroundimg"
+              height="100%"
+              width="100%"
+              id="background_image"
+              v-if="backimgbtn"
+            ></v-img>
 
-              <div id="right-sheet-content">
-                <div id="superior-job-wrapper" v-if="job">
-                  <h1 id="superior-job" class="text-uppercase">
-                    {{ job }}
-                  </h1>
-                </div>
-                <v-row no-gutters>
-                  <v-col cols="8">
-                    <div
-                      id="custom-color-text-header"
-                      v-bind:style="{ color: textcolor }"
-                    >
-                      <h1 id="superior-name">{{ fullname }}</h1>
-                      <!-- ************** SHOWING - MAIN DATA ************** -->
-                      <div v-if="fullname.length > 1">
-                        <h3 id="text-fullname">
-                          Hi! I'm
-                          <span class="font-weight-bold"> {{ fullname }}. </span>
-                        </h3>
-                      </div>
-                      <!-- ***********************SEPARATOR************************ -->
-
-                      <h4 id="text-borndate" v-if="age.length > 1">
-                        I was born in {{ parseInt(currentYear - age) }} and I'm currently
-                        living in {{ place_selected }}.
-                      </h4>
+            <div id="right-sheet-content">
+              <div id="superior-job-wrapper" v-if="job">
+                <h1 id="superior-job" class="text-uppercase">
+                  {{ job }}
+                </h1>
+              </div>
+              <v-row no-gutters>
+                <v-col cols="8">
+                  <div id="custom-color-text-header" v-bind:style="{ color: textcolor }">
+                    <h1 id="superior-name">{{ fullname }}</h1>
+                    <!-- ************** SHOWING - MAIN DATA ************** -->
+                    <div v-if="fullname.length > 1">
+                      <h3 id="text-fullname">
+                        Hi! I'm
+                        <span class="font-weight-bold"> {{ fullname }}. </span>
+                      </h3>
                     </div>
-                  </v-col>
-                  <v-col cols="4">
-                    <!-- ************** IMAGE SELECTED ************** -->
+                    <!-- ***********************SEPARATOR************************ -->
 
-                    <div class="row d-inline">
-                      <v-img
-                        v-if="image"
-                        :src="imageUrl"
-                        :aspect-ratio="1"
-                        width="100%"
-                        id="user-img"
-                      ></v-img>
+                    <h4 id="text-borndate" v-if="age.length > 1">
+                      I was born in {{ parseInt(currentYear - age) }} and I'm currently
+                      living in {{ place_selected }}.
+                    </h4>
+                  </div>
+                </v-col>
+                <v-col cols="4">
+                  <!-- ************** IMAGE SELECTED ************** -->
+
+                  <div class="row d-inline">
+                    <v-img
+                      v-if="image"
+                      :src="imageUrl"
+                      :aspect-ratio="1"
+                      width="100%"
+                      id="user-img"
+                    ></v-img>
+                  </div>
+                </v-col>
+              </v-row>
+              <!-- ***********************SEPARATOR************************ -->
+              <div id="custom-color-text-body" v-bind:style="{ color: textcolor }">
+                <div
+                  v-if="exp_selected.length > 0"
+                  class="text-left mt-5 font-weight-bold"
+                >
+                  <p>
+                    I'm a
+                    <span>{{ exp_selected }}</span>
+                    {{ job }}
+                    <span v-if="exp_selected != 'Beginner'"
+                      >and I have worked in these companies:</span
+                    >
+                  </p>
+                  <ul v-if="exp_selected != 'Beginner'">
+                    <li v-if="experience1">
+                      <span v-bind:style="{ color: textcolor }"
+                        >{{ experience1 }} - {{ year1 }}</span
+                      >
+                    </li>
+                    <li v-if="experience2">
+                      <span v-bind:style="{ color: textcolor }"
+                        >{{ experience2 }} - {{ year2 }}</span
+                      >
+                    </li>
+                    <li v-if="experience3">
+                      <span v-bind:style="{ color: textcolor }"
+                        >{{ experience3 }} - {{ year3 }}</span
+                      >
+                    </li>
+                    <li v-if="experience4">
+                      <span v-bind:style="{ color: textcolor }"
+                        >{{ experience4 }} - {{ year4 }}</span
+                      >
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- ***********************SEPARATOR************************ -->
+                <div class="separator my-5" v-if="tech_selected.length > 0"></div>
+                <div v-if="tech_selected.length > 0" class="text-center font-weight-bold">
+                  <p>These are the main technologies I use:</p>
+                </div>
+              </div>
+              <v-sheet
+                width="100%"
+                max-height="350"
+                elevation="10"
+                rounded
+                class="pa-2"
+                v-if="tech_selected.length > 0 && tech_selected.length <= 8"
+              >
+                <v-row>
+                  <v-col v-for="(tech, i) in tech_selected" :key="i">
+                    <div id="tech-selected-wrapper">
+                      <v-icon color="primary" id="tech-icon">{{ tech.icon }}</v-icon>
+                      <p class="text-center mx-auto tech-text">{{ tech.language }}</p>
                     </div>
                   </v-col>
                 </v-row>
-                <!-- ***********************SEPARATOR************************ -->
-                <div id="custom-color-text-body" v-bind:style="{ color: textcolor }">
-                  <div
-                    v-if="exp_selected.length > 0"
-                    class="text-left mt-5 font-weight-bold"
-                  >
-                    <p>
-                      I'm a
-                      <span>{{ exp_selected }}</span>
-                      {{ job }}
-                      <span v-if="exp_selected != 'Beginner'"
-                        >and I have worked in these companies:</span
-                      >
-                    </p>
-                    <v-list
-                      v-if="exp_selected != 'Beginner'"
-                      style="background: transparent"
-                    >
-                      <v-list-item v-if="experience1"
-                        ><span v-bind:style="{ color: textcolor }"
-                          >{{ experience1 }} - {{ year1 }}</span
-                        ></v-list-item
-                      >
-                      <v-list-item v-if="experience2"
-                        ><span v-bind:style="{ color: textcolor }"
-                          >{{ experience2 }} - {{ year2 }}</span
-                        ></v-list-item
-                      >
-                      <v-list-item v-if="experience3"
-                        ><span v-bind:style="{ color: textcolor }"
-                          >{{ experience3 }} - {{ year3 }}</span
-                        ></v-list-item
-                      >
-                      <v-list-item v-if="experience4"
-                        ><span v-bind:style="{ color: textcolor }"
-                          >{{ experience4 }} - {{ year4 }}</span
-                        ></v-list-item
-                      >
-                    </v-list>
-                  </div>
+              </v-sheet>
+              <!-- ***********************SEPARATOR************************ -->
+              <div
+                class="separator my-5"
+                v-if="linkedin || stackoverflow || github || facebook"
+              ></div>
 
-                  <!-- ***********************SEPARATOR************************ -->
-                  <div class="separator" v-if="tech_selected.length > 0"></div>
-                  <div
-                    v-if="tech_selected.length > 0"
-                    class="text-center font-weight-bold"
-                  >
-                    <p>These are the main technologies I use:</p>
-                  </div>
-                </div>
-                <v-sheet
-                  width="100%"
-                  max-height="350"
-                  elevation="10"
-                  rounded
-                  class="pa-2"
-                  v-if="tech_selected.length > 0 && tech_selected.length <= 8"
-                >
-                  <v-row no-gutters>
-                    <v-col v-for="(tech, i) in tech_selected" :key="i">
-                      <div id="tech-selected-wrapper">
-                        <v-icon color="primary" id="tech-icon">{{ tech.icon }}</v-icon>
-                        <p class="text-center mx-auto tech-text">{{ tech.language }}</p>
-                      </div>
-                    </v-col>
-                  </v-row>
-                </v-sheet>
-                <!-- ***********************SEPARATOR************************ -->
-                <div class="row d-block mt-10">
+              <!-- ***************** LINKEDIN LINK ***************** -->
+              <v-container class="text-center">
+                <v-row no-gutters class="my-2">
                   <div
                     class="social-icon"
                     v-bind:href="linkedin"
                     v-if="linkedin.length > 0"
                   >
                     <v-icon v-bind:style="{ color: textcolor }">mdi-linkedin</v-icon>
+
                     <p
-                      class="social-icon-text my-auto"
+                      class="social-icon-text d-inline ml-5"
                       v-bind:style="{ color: textcolor }"
                     >
                       {{ linkedin }}
                     </p>
                   </div>
+                </v-row>
+
+                <!-- ***************** STACKOVERFLOW LINK ***************** -->
+                <v-row no-gutters class="my-2">
                   <div
                     class="social-icon"
-                    v-bind:href="instagram"
-                    v-if="instagram.length > 0"
+                    v-bind:href="stackoverflow"
+                    v-if="stackoverflow.length > 0"
                   >
-                    <v-icon v-bind:style="{ color: textcolor }">mdi-instagram</v-icon>
+                    <v-icon v-bind:style="{ color: textcolor }"
+                      >mdi-stack-overflow</v-icon
+                    >
+
                     <p
-                      class="social-icon-text my-auto"
+                      class="social-icon-text d-inline ml-5"
                       v-bind:style="{ color: textcolor }"
                     >
-                      {{ instagram }}
+                      {{ stackoverflow }}
                     </p>
                   </div>
+                </v-row>
+                <!-- ***************** GITHUB LINK ***************** -->
+                <v-row no-gutters class="my-2">
                   <div class="social-icon" v-bind:href="github" v-if="github.length > 0">
                     <v-icon v-bind:style="{ color: textcolor }">mdi-github</v-icon>
+
                     <p
-                      class="social-icon-text my-auto"
+                      class="social-icon-text d-inline ml-5"
                       v-bind:style="{ color: textcolor }"
                     >
                       {{ github }}
                     </p>
                   </div>
+                </v-row>
+                <!-- ***************** FACEBOOK LINK ***************** -->
+                <v-row no-gutters class="my-2">
                   <div
                     class="social-icon"
                     v-bind:href="facebook"
                     v-if="facebook.length > 0"
                   >
                     <v-icon v-bind:style="{ color: textcolor }">mdi-facebook</v-icon>
+
                     <p
-                      class="social-icon-text my-auto"
+                      class="social-icon-text d-inline ml-5"
                       v-bind:style="{ color: textcolor }"
                     >
                       {{ facebook }}
                     </p>
                   </div>
-                </div>
-              </div>
-            </v-sheet>
+                </v-row>
+              </v-container>
+            </div>
           </div>
         </vue-html2pdf>
       </v-col>
@@ -512,7 +533,7 @@ export default {
       files: [],
       linkedin: "",
       github: "",
-      instagram: "",
+      stackoverflow: "",
       facebook: "",
       experience1: "",
       year1: "",
@@ -658,28 +679,6 @@ export default {
     top: 0px;
     margin: 80px;
   }
-
-  .social-icon {
-    margin-top: 15px;
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  .separator {
-    height: 2px;
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-    width: 100%;
-    border-radius: 10px;
-    margin: 20px;
-  }
-
-  .social-icon-text {
-    display: flex;
-    margin-left: 25px;
-    font-weight: bold;
-    margin-top: 2px;
-  }
 }
 
 // ******* DESKTOP RESPONSIVE ******* //
@@ -690,7 +689,18 @@ export default {
 
   #right-sheet {
     position: relative;
+    height: 1110px;
+    width: 700px;
   }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  ul {
+    list-style: none;
+  }
+
   #come-back-btn {
     text-decoration: none;
     position: absolute;
@@ -702,6 +712,12 @@ export default {
     position: absolute;
     right: 0px;
     z-index: 99999;
+  }
+
+  #upload-image-btn {
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: right bottom;
   }
 
   #main-container {
@@ -767,7 +783,9 @@ export default {
     color: white !important;
     padding: 10px;
     border-radius: 10px;
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: top;
   }
 
   #background-image {
@@ -782,29 +800,15 @@ export default {
   #right-sheet-content {
     position: absolute;
     top: 0px;
-    margin: 100px;
-  }
-
-  .social-icon {
-    margin-top: 15px;
-    &:hover {
-      text-decoration: none;
-    }
+    padding: 20px;
   }
 
   .separator {
     height: 2px;
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
+    background-image: url("../assets/img/gradient1.jpg");
+    background-size: cover;
+    background-position: right bottom;
     width: 100%;
-    border-radius: 10px;
-    margin: 20px;
-  }
-
-  .social-icon-text {
-    display: flex;
-    margin-left: 25px;
-    font-weight: bold;
-    margin-top: 2px;
   }
 }
 </style>

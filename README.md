@@ -17,6 +17,10 @@ Version 1.2
 * Added error 404 page.
 * Early version of the new CV generator.
 
+Version 1.2.1
+
+* Aesthetic improvements.
+
 ## Project setup
 ```
 npm install

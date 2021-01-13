@@ -14,12 +14,12 @@
       <!-- ***************** SIDEBAR MENU ***************** -->
       <v-col cols="3">
         <v-navigation-drawer right width="400" id="sidemenu">
-          <v-sheet height="100%" width="100%" class="pa-5 cyan--text" color="#212529">
-            <h3>Customing options</h3>
+          <v-sheet height="100%" width="100%" class="pa-5 secondary darken-2" dark>
+            <p class="small text-center">Customing options</p>
 
             <!-- ***************** BACKGROUND COLOR PICKER ***************** -->
-            <v-card color="secondary darken-2" class="pa-2 my-4">
-              <p class="font-weight-bold my-5">Background color</p>
+            <v-card class="pa-2 my-4 text-center" dark>
+              <h4 class="my-5">Background color</h4>
               <v-text-field v-model="color" hide-details class="ma-0 pa-0" solo>
                 <template v-slot:append>
                   <v-menu
@@ -42,8 +42,8 @@
               </v-text-field>
             </v-card>
             <!-- ***************** BACKGROUND IMAGE PICKER ***************** -->
-            <v-card color="secondary darken-2" class="pa-2 my-4">
-              <p class="font-weight-bold my-5">Background image</p>
+            <v-card class="pa-2 my-4" dark>
+              <h4 class="my-5 text-center">Background image</h4>
               <v-container>
                 <v-row>
                   <v-col cols="4" v-for="(image, i) in images" :key="i">
@@ -55,7 +55,7 @@
                   </v-col>
 
                   <v-btn
-                    :class="on ? 'primary' : 'white'"
+                    :class="on ? 'primary white--text' : 'white black--text'"
                     v-on:click="
                       backgroundbtn = !backgroundbtn;
                       on = !on;
@@ -69,19 +69,18 @@
             </v-card>
 
             <!-- ***************** TEXT COLOR INPUT ***************** -->
-            <v-card color="secondary darken-2" class="pa-2 my-4">
-              <p class="font-weight-bold my-5">Main text color</p>
-              <label class="cyan--text"
-                >Write a color <br /><span class="white--text"
-                  >(Text, Hex and RGB are available)</span
-                ></label
-              >
-              <input
+            <v-card class="pa-2 my-4" dark>
+              <h4 class="my-5 text-center">Main text color</h4>
+              <span class="white--text small">Text, Hex and RGB are available</span>
+
+              <v-text-field
                 type="text"
                 v-model="textcolor"
+                label="write a color"
                 placeholder="Write here"
-                class="form-control"
-              />
+                dark
+                filled
+              ></v-text-field>
             </v-card>
           </v-sheet>
         </v-navigation-drawer>
@@ -170,18 +169,8 @@ export default {
     bottom: 0px;
   }
 
-  h3 {
-    text-align: center;
-    color: white;
+  h4 {
     font-size: 15px;
-  }
-
-  p {
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-align: center;
-    font-size: 16px;
   }
 
   #color-picker {
@@ -226,17 +215,8 @@ export default {
     bottom: 0px;
   }
 
-  h3 {
-    text-align: center;
-    color: white;
-  }
-
-  p {
-    background: linear-gradient(to right, rgb(15, 172, 211), rgb(70, 25, 196));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 1.5em;
-    text-align: center;
+  h4 {
+    font-size: 18px;
   }
 
   #color-picker {

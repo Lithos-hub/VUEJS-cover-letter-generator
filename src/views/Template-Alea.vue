@@ -91,6 +91,31 @@
             <!-- ****************************** ADITIONAL INFORMATION ****************************** -->
             <h4>Aditional information</h4>
             <h5 class="text-left cyan--text">Languages:</h5>
+            <v-combobox
+              v-model="select1"
+              :items="language_items"
+              label="Select languages"
+              multiple
+              chips
+              dark
+            >
+              <template v-slot:selection="data">
+                <v-chip
+                  :key="JSON.stringify(data.item)"
+                  v-bind="data.attrs"
+                  :input-value="data.selected"
+                  :disabled="data.disabled"
+                  @click:close="data.parent.selectItem(data.item)"
+                >
+                  <v-avatar
+                    class="accent white--text"
+                    left
+                    v-text="data.item.slice(0, 1).toUpperCase()"
+                  ></v-avatar>
+                  {{ data.item }}
+                </v-chip>
+              </template>
+            </v-combobox>
           </v-col>
           <v-col>
             <!-- ****************************** EDUCATION ****************************** -->
@@ -328,6 +353,9 @@
 <script>
 import ComebackBtn from "../components/Comeback-btn.vue";
 import NavbarCL from "../components/NavbarCL";
+import axios from "axios";
+
+import _ from "lodash";
 
 export default {
   data() {
@@ -361,11 +389,34 @@ export default {
       companyName4: "",
       positionName4: "",
       expPeriod4: "",
+      select1: [],
+      language_items: [],
     };
   },
   components: {
     NavbarCL,
     ComebackBtn,
+  },
+  methods: {
+    getLanguageList() {
+      const api = "https://restcountries.eu/rest/v2/all";
+
+      axios.get(api).then(function (res) {
+        for (let i = 0; i < res.data.length; i++) {
+          const language_name = res.data[i].languages[0].name;
+
+          this.language_items.push(language_name);
+
+          const removeDuplicated = _.uniqBy(this.language_items, "name");
+          this.language_items = removeDuplicated;
+        }
+
+        // console.log(languages);
+      });
+    },
+  },
+  mounted() {
+    this.getLanguageList();
   },
 };
 </script>
