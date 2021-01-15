@@ -31,27 +31,36 @@ export default {
   data() {
     return {
       changelog: [
-        { version: "1.1.0", changes: ["Fixes and changes in generator system."] },
+        {
+          version: "1.1.0",
+          changes: ["(Cover Letter Generator) Fixes and changes in generator system."],
+        },
         {
           version: "1.2.0",
-          changes: ["Added error 404 page. Early version of the new CV generator. "],
-        },
-        { version: "1.2.1", changes: ["Aesthetic improvements."] },
-        { version: "1.2.2", changes: ["Added new options in CV generator."] },
-        {
-          version: "1.2.3",
           changes: [
-            "Improvements in CV generator",
-            "Experience form is now dynamic.",
-            "Visual layout of the final document (This will be hidden once version 2.0.0 is released).",
+            "(Global) Added error 404 page.",
+            "(CV Generator) Early version of the new CV generator. ",
+          ],
+        },
+        { version: "1.2.1", changes: ["(Global) Aesthetic improvements."] },
+        {
+          version: "1.3.0",
+          changes: ["(CV Generator) Added new options in CV generator."],
+        },
+        {
+          version: "1.4.0",
+          changes: [
+            "(CV Generator) Improvements in CV generator",
+            "(CV Generator) Experience form is now dynamic.",
+            "(CV Generator) Visual layout of the final document (This will be hidden once version 2.0.0 is released).",
           ],
         },
         {
-          version: "1.2.4",
+          version: "1.5.0",
           changes: [
-            "Each education form input can be deleted by the user.",
-            "Dynamic changelog.",
-            "About section updated.",
+            "(CV Generator) Each education form input can be deleted by the user.",
+            "(Global) Dynamic changelog.",
+            "(Global) About section updated.",
           ],
         },
       ],

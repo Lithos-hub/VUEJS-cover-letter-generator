@@ -78,8 +78,8 @@ export default {
     return {
       year: new Date().getFullYear(),
       major: 1,
-      minor: 2,
-      patch: 3,
+      minor: 5,
+      patch: 0,
     };
   },
 };

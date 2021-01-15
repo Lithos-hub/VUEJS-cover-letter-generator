@@ -33,13 +33,13 @@ Version 1.2.1
 
 * Aesthetic improvements.
 
-Version 1.2.2
+Version 1.3.0
 
 :green_book: CV Generator: 
 
 * Added new options.
 
-Version 1.2.3 
+Version 1.4.0 
 
 :green_book: CV Generator: 
 
@@ -47,7 +47,7 @@ Version 1.2.3
 * Experience form is now dynamic.
 * Visual layout of the final document (This will be hidden once version 2.0.0 is released).
 
-Version 1.2.4 
+Version 1.5.0 
 
 :green_book: CV Generator 
 :orange_book: Global 
