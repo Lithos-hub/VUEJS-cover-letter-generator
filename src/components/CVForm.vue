@@ -197,7 +197,7 @@
               ><v-btn
                 color="red"
                 icon
-                v-on:click="info_json.education.splice(item, i)"
+                v-on:click="info_json.education.splice(i, 1)"
                 v-if="i >= 1"
                 ><v-icon>mdi-close</v-icon></v-btn
               ></v-col

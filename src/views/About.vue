@@ -38,15 +38,17 @@
                 <v-sheet height="100%" width="100%" id="english-sheet">
                   <v-img src="../assets/img/english-icon.jpg" class="ma-auto flag"></v-img>
                   <p class="text">
-                  This application consists of generating personalized cover letters within the scope of Information Technology. <br /><br />The user, through a simple form, can enter a series of data such as your name, types of technologies you handle or links to your social networks. <br /><br />
-                  A preview of the document is automatically generated in real time. <br /><br />
-                  The user can also manipulate the background color of the document or add some of the images provided. You can also change the color of the main text by simply typing a color in an input. <br /><br />
-                  Finally, the document can be downloaded in PDF, and you can also preview the PDF with a modal window. <br><br>
-                  These are some special resources that have been employed:
+                    This application is divided into two modules: a resume generator (CV Generator, available from Version 2.0.0) and a cover letter generator
+                  <br> <br>
+                  Cover Letter Generator consists of generating personalized cover letters within the scope of Information Technology. <br />The user, through a simple form, can enter a series of data such as your name, types of technologies you handle or links to your social networks. <br /><br />
+                  A preview of the document is automatically generated in real time. <br />
+                  The user can also manipulate the background color of the document or add some of the images provided. You can also change the color of the main text by simply typing a color in an input. <br />
+                  Finally, the document can be downloaded in PDF, and you can also preview the PDF with a modal window. <br>
+                  These are some special resources that have been employed:<br><br>
                   <ul>
-                    <li>The <b>VueHtml2pdf</b> library to generate the PDF</li>
-                    <li>The communication between the sidebar component and the document sheet</li>
-                    <li>Cool loop animations for this About page and the Home page</li>
+                    <li>The <b>VueHtml2pdf</b> library to generate the PDF.</li>
+                    <li>The communication between the sidebar component and the document sheet.</li>
+                    <li>Cool loop animations for this About page and the Home page.</li>
                     <li>
                       Some interesting v-if conditions. For example, if the user chooses the option "No experience", it is logical that the list of companies where he has been working does not appear. Something similar happens when you choose experience: if you choose "less than 2 years" option, that
                       information will appear in the document as "Junior".
@@ -60,16 +62,18 @@
                 <v-sheet height="100%" width="100%" id="spanish-sheet">
                   <v-img src="../assets/img/spanish-icon.jpg" class="ma-auto flag"></v-img>
   <p class="text">
-                  Esta aplicación consiste en generar cartas de presentación personalizadas dentro del ámbito de las Tecnologías de la Información. <br /><br />El usuario, mediante un sencillo formulario, puede introducir una serie de datos tales como su nombre, tipos de tecnologías que maneja o enlaces a sus redes
+                  Esta aplicación se divide en dos módulos: un generador de Currículums (CV Generator, disponible a partir de la Version 2.0.0) y un generador de Cartas de Presentación (Cover Letter Generator)
+                  <br> <br>
+                  Cover Letter Generator consiste en generar cartas de presentación personalizadas dentro del ámbito de las Tecnologías de la Información. <br /><br />El usuario, mediante un sencillo formulario, puede introducir una serie de datos tales como su nombre, tipos de tecnologías que maneja o enlaces a sus redes
                   sociales. <br /><br />
-                  Automáticamente y en tiempo real, se va generando una vista previa del documento. <br /><br />
+                  Automáticamente y en tiempo real, se va generando una vista previa del documento. <br />
                   El usuario podrá, además, manipular el color de fondo del documento o añadirle alguna de las imágenes que se proporcionan. También puede cambiar el color del texto principal simplemente escribiendo un color en un input. <br /><br />
-                  Finalmente, el documento puede ser descargado en PDF, pudiendo además previsualizar dicho PDF con una ventana modal. <br><br>
-                  Estos son algunos recursos especiales que se han empleado:
+                  Finalmente, el documento puede ser descargado en PDF, pudiendo además previsualizar dicho PDF con una ventana modal. <br>
+                  Estos son algunos recursos especiales que se han empleado:<br><br>
                   <ul>
-                    <li>La librería <b>VueHtml2pdf</b> para poder generar el PDF</li>
-                    <li>La comunicación entre el componente del sidebar lateral y la hoja de documento</li>
-                    <li>Animaciones guays en loop para esta página de About y la de Home</li>
+                    <li>La librería <b>VueHtml2pdf</b> para poder generar el PDF.</li>
+                    <li>La comunicación entre el componente del sidebar lateral y la hoja de documento<./li>
+                    <li>Animaciones guays en loop para esta página de About y la de Home.</li>
                     <li>
                       Algunos condiciones v-if interesantes. Por ejemplo, si el usuario elige la opción de "Sin experiencia", pues es lógico que la lista de empresas donde ha trabajado no aparezca. Algo parecido ocurre cuando elige la experiencia: si elige que tiene menos de 2 años, en el documento esa información
                       aparecerá reflejada como "Junior".

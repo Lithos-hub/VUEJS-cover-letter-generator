@@ -16,26 +16,44 @@ The document can be downloaded in PDF format with a modal window preview.
 
 Version 1.1.0
 
+:blue_book: Cover Letter Generator:
+
 * Fixes and changes in generator system.
 
 Version 1.2.0
+
+:orange_book: Global:
 
 * Added error 404 page.
 * Early version of the new CV generator.
 
 Version 1.2.1
 
+:orange_book: Global: 
+
 * Aesthetic improvements.
 
 Version 1.2.2
 
-* Added new options in CV generator.
+:green_book: CV Generator: 
+
+* Added new options.
 
 Version 1.2.3 
+
+:green_book: CV Generator: 
 
 * Improvements in CV generator. 
 * Experience form is now dynamic.
 * Visual layout of the final document (This will be hidden once version 2.0.0 is released).
+
+Version 1.2.4 
+
+:green_book: CV Generator: 
+
+* Each education form input can be deleted by the user.
+* Dynamic Changelog.
+* About section updated.
 
 ## Project setup
 ```
