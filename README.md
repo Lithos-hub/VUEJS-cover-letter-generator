@@ -56,11 +56,16 @@ Version 1.5.0
 * Dynamic Changelog.
 * About section updated.
 
-Version 1.5.5
+Version 1.7
 
 :green_book: CV Generator 
 
 * Each Experience, Education and Complementary Education input can be deleted.
+* I Have Experience button is now dynamic.
+* Technical skills added.
+* Optimiced code.
+* Smart behavior in the information generation.
+
 
 ## Project setup
 ```

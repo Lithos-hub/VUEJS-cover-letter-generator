@@ -42,26 +42,26 @@
             <v-col cols="6">
               <v-text-field
                 label="Mobile"
-                v-model="info_json.mob_number"
+                v-model="info_json.contact_info[0].info"
                 class="input cyan--text"
                 dark
               ></v-text-field>
               <v-text-field
                 label="Telephone"
-                v-model="info_json.tel_number"
+                v-model="info_json.contact_info[1].info"
                 class="input cyan--text"
                 dark
               ></v-text-field>
               <v-text-field
                 label="Email"
                 :rules="emailRules"
-                v-model="info_json.email"
+                v-model="info_json.contact_info[2].info"
                 class="input cyan--text"
                 dark
               ></v-text-field>
               <v-text-field
                 label="Website"
-                v-model="info_json.website"
+                v-model="info_json.contact_info[3].info"
                 class="input cyan--text"
                 dark
               ></v-text-field>
@@ -207,10 +207,14 @@
           <v-btn
             block
             @click="info_json.haveExperience = true"
-            :class="info_json.haveExperience ? 'd-none' : 'success'"
+            :class="
+              info_json.haveExperience && info_json.experience.length > 0
+                ? 'd-none'
+                : 'success'
+            "
             >I have experience</v-btn
           >
-          <div v-if="info_json.haveExperience">
+          <div v-if="info_json.haveExperience && info_json.experience.length > 0">
             <h4 class="my-5">Experience</h4>
             <v-row v-for="(item, i) in info_json.experience" :key="'A' + i" no-gutters>
               <v-col cols="4">
@@ -262,6 +266,7 @@
           </div>
           <!-- ****************************** COMPLEMENTARY EDUCATION ****************************** -->
           <h4 class="my-5">Complementary education</h4>
+          <small>Online courses, seminars, etc.</small>
           <v-row>
             <v-col cols="10" class="ma-auto">
               <v-text-field
@@ -286,17 +291,12 @@
             <v-tooltip bottom>
               <template v-slot:activator="{ on, attrs }">
                 <v-col cols="1" class="ma-auto"
-                  ><v-btn
-                    color="red"
-                    icon
-                    @click="deleteComp(item)"
-                    v-bind="attrs"
-                    v-on="on"
+                  ><v-btn color="red" icon @click="deleteComp()" v-bind="attrs" v-on="on"
                     ><v-icon>mdi-close</v-icon></v-btn
                   ></v-col
                 >
               </template>
-              <span>Delete list</span>
+              <span>Delete all information</span>
             </v-tooltip>
           </v-row>
           <h5 class="text-left cyan--text">Info check out:</h5>
@@ -317,13 +317,91 @@
               </li>
             </ul>
           </v-container>
+          <!-- ****************************** TECHNICAL SKILLS ****************************** -->
+          <h4 class="my-5">Technical Skills</h4>
+          <small>Software, programming languages, etc.</small>
+          <v-row>
+            <v-col cols="10" class="ma-auto">
+              <v-text-field
+                label="Write here"
+                single-line
+                dark
+                v-model="info_json.technicalskills_text"
+              ></v-text-field>
+            </v-col>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-col cols="1" class="ma-auto">
+                  <v-btn
+                    color="success"
+                    icon
+                    @click="addTechnical"
+                    v-bind="attrs"
+                    v-on="on"
+                    ><v-icon>mdi-plus</v-icon></v-btn
+                  >
+                </v-col>
+              </template>
+              <span>Add technical skill</span>
+            </v-tooltip>
+
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-col cols="1" class="ma-auto"
+                  ><v-btn
+                    color="red"
+                    icon
+                    @click="deleteTechnical()"
+                    v-bind="attrs"
+                    v-on="on"
+                    ><v-icon>mdi-close</v-icon></v-btn
+                  ></v-col
+                >
+              </template>
+              <span>Delete all information</span>
+            </v-tooltip>
+          </v-row>
+          <h5 class="text-left cyan--text">Info check out:</h5>
+          <v-container
+            class="text-left secondary rounded"
+            v-if="info_json.technicalskills.length > 0"
+          >
+            <ul style="list-style: none" class="ma-auto">
+              <li class="ma-auto" v-for="(item, i) in info_json.technicalskills" :key="i">
+                {{ item }}
+                <v-btn
+                  color="red"
+                  icon
+                  class="ml-auto"
+                  @click="info_json.technicalskills.splice(i, 1)"
+                  ><v-icon>mdi-close</v-icon></v-btn
+                >
+              </li>
+            </ul>
+          </v-container>
         </v-col>
       </v-row>
-      <v-btn block color="red darken-2" dark large>Generate PDF</v-btn>
+      <!-- <v-btn block color="red darken-2" dark large @click="savePDF">Generate PDF</v-btn> -->
     </v-sheet>
 
     <v-container id="document-container">
-      <CVAlea :info_json="info_json" />
+      <vue-html2pdf
+        :show-layout="true"
+        :float-layout="false"
+        :enable-download="true"
+        :preview-modal="true"
+        :paginate-elements-by-height="1100"
+        filename="My card"
+        :pdf-quality="2"
+        :manual-pagination="true"
+        pdf-format="a4"
+        pdf-orientation="portrait"
+        pdf-content-width="1240px"
+        ref="html2Pdf"
+      >
+        <CVAlea :info_json="info_json" slot="pdf-content" />
+      </vue-html2pdf>
     </v-container>
   </div>
 </template>
@@ -331,6 +409,7 @@
 <script>
 import axios from "axios";
 import CVAlea from "../components/CVAlea";
+import VueHtml2pdf from "vue-html2pdf";
 
 import _ from "lodash";
 
@@ -338,6 +417,7 @@ export default {
   name: "CVForm",
   components: {
     CVAlea,
+    VueHtml2pdf,
   },
   data() {
     return {
@@ -346,6 +426,12 @@ export default {
       emailRules: [(v) => /.+@.+/.test(v) || "Email must be valid"],
       textarea_job_rules: [(v) => v.length <= 200 || "Max 200 characters"],
       info_json: {
+        contact_info: [
+          { icon: "mdi-cellphone", info: "" },
+          { icon: "mdi-phone", info: "" },
+          { icon: "mdi-at", info: "" },
+          { icon: "mdi-web", info: "" },
+        ],
         name: "Lorem",
         lastName: "Ipsum Dolor",
         birthdate: 1992,
@@ -442,10 +528,15 @@ export default {
         otherskills_selected: [],
         comp_education: [],
         comp_education_text: "",
+        technicalskills: [],
+        technicalskills_text: "",
       },
     };
   },
   methods: {
+    savePDF() {
+      this.$refs.html2Pdf.generatePdf();
+    },
     async getLanguageList() {
       let data = await axios.get("https://restcountries.eu/rest/v2/all");
       let countries_array = [];
@@ -467,7 +558,6 @@ export default {
     },
     addComp() {
       this.info_json.comp_education.push(this.info_json.comp_education_text);
-      console.log(this.info_json.comp_education);
     },
     deleteComp(item) {
       this.info_json.comp_education.splice(item);
@@ -487,6 +577,12 @@ export default {
     },
     onUpload() {
       this.$refs.fileInput.click();
+    },
+    addTechnical() {
+      this.info_json.technicalskills.push(this.info_json.technicalskills_text);
+    },
+    deleteTechnical(item) {
+      this.info_json.technicalskills.splice(item);
     },
   },
   mounted() {

@@ -64,9 +64,13 @@ export default {
           ],
         },
         {
-          version: "1.5.5",
+          version: "1.7",
           changes: [
-            "Each Experience, Education and Complementary Education input can be deleted.",
+            "(CV Generator) Each Experience, Education and Complementary Education input can be deleted.",
+            "(CV Generator) I Have Experience button is now dynamic.",
+            "(CV Generator) Technical skills added.",
+            "(CV Generator) Optimiced code.",
+            "(CV Generator) Smart behavior in the information generation.",
           ],
         },
       ],
