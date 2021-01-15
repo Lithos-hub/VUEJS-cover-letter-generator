@@ -78,7 +78,7 @@ export default {
     return {
       year: new Date().getFullYear(),
       major: 1,
-      minor: 5,
+      minor: 7,
       patch: 0,
     };
   },
