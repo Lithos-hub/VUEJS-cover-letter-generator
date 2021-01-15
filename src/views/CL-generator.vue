@@ -203,7 +203,7 @@ export default {
     height: 100%;
     background: url("../assets/img/generator.jpg");
     background-size: cover;
-    background-position: center;
+    background-position: top;
   }
 
   #sidemenu {

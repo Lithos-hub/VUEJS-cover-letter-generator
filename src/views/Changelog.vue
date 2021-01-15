@@ -41,6 +41,20 @@
             <li class="list-changes">Added new options in CV generator.</li>
           </v-col>
         </v-row>
+
+        <v-row class="list-row">
+          <v-col class="ma-auto">
+            <div class="version">Version 1.2.3</div>
+          </v-col>
+          <v-col class="ma-auto">
+            <li class="list-changes">Improvements in CV generator.</li>
+            <li class="list-changes">Experience form is now dynamic.</li>
+            <li class="list-changes">
+              Visual layout of the final document (This will be hidden once version 2.0.0
+              is released).
+            </li>
+          </v-col>
+        </v-row>
       </v-sheet>
     </v-container>
   </div>

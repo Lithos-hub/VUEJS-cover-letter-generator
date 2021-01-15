@@ -546,8 +546,6 @@ export default {
   },
   methods: {
     onFileSelected(event) {
-      // console.log(event[0]);
-      // this.file_selected = event[0];
       const files = event.target.files;
       let filename = files[0].name;
       if (filename.lastIndexOf(".") <= 0) {
@@ -869,7 +867,7 @@ export default {
 
   #main-container {
     position: relative;
-    margin: 50px;
+    padding-left: 50px;
     height: 100%;
     width: 100%;
   }

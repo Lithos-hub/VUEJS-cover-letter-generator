@@ -26,7 +26,6 @@ export default {
   width: 100%;
 }
 .navbar-brand {
-  font-family: $style3;
-  letter-spacing: 5px;
+  font-family: $style5;
 }
 </style>
