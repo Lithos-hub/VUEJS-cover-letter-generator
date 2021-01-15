@@ -47,7 +47,7 @@ Version 1.4.0
 * Experience form is now dynamic.
 * Visual layout of the final document (This will be hidden once version 2.0.0 is released).
 
-Version 1.5.0 
+Version 1.5.0
 
 :green_book: CV Generator 
 :orange_book: Global 
@@ -55,6 +55,12 @@ Version 1.5.0
 * Each education form input can be deleted by the user.
 * Dynamic Changelog.
 * About section updated.
+
+Version 1.5.5
+
+:green_book: CV Generator 
+
+* Each Experience, Education and Complementary Education input can be deleted.
 
 ## Project setup
 ```

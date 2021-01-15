@@ -63,6 +63,12 @@ export default {
             "(Global) About section updated.",
           ],
         },
+        {
+          version: "1.5.5",
+          changes: [
+            "Each Experience, Education and Complementary Education input can be deleted.",
+          ],
+        },
       ],
     };
   },

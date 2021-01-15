@@ -238,7 +238,7 @@
                 ></v-text-field>
               </v-col>
 
-              <v-col cols="12">
+              <v-col cols="11">
                 <v-textarea
                   v-model="item.textarea"
                   placeholder="(Max 200 characters)"
@@ -248,6 +248,15 @@
                   counter
                   :rules="textarea_job_rules"
                 ></v-textarea>
+              </v-col>
+              <v-col cols="1">
+                <v-btn
+                  color="red"
+                  icon
+                  class="ml-auto"
+                  @click="info_json.experience.splice(i, 1)"
+                  ><v-icon>mdi-close</v-icon></v-btn
+                >
               </v-col>
             </v-row>
           </div>
@@ -297,10 +306,14 @@
           >
             <ul style="list-style: none" class="ma-auto">
               <li class="ma-auto" v-for="(item, i) in info_json.comp_education" :key="i">
-                <v-icon class="d-inline ma-auto" color="green" size="15"
-                  >mdi-check-bold</v-icon
-                >
                 {{ item }}
+                <v-btn
+                  color="red"
+                  icon
+                  class="ml-auto"
+                  @click="info_json.comp_education.splice(i, 1)"
+                  ><v-icon>mdi-close</v-icon></v-btn
+                >
               </li>
             </ul>
           </v-container>
