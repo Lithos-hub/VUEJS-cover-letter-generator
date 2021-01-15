@@ -88,10 +88,6 @@ export default {
 <style lang="scss" scoped>
 @import "src/scss/variables";
 
-body {
-  overflow: hidden;
-}
-
 // ******* MOBILE RESPONSIVE ******* //
 @media only screen and (min-width: 360px) {
   .home {
@@ -100,6 +96,7 @@ body {
     background: url("../assets/img/background.jpg");
     background-size: cover;
     background-position: center;
+    position: fixed;
   }
 
   .container {
@@ -281,6 +278,7 @@ body {
     background: url("../assets/img/background.jpg");
     background-size: cover;
     background-position: center;
+    position: fixed;
   }
 
   .container {
@@ -464,6 +462,7 @@ body {
     background: url("../assets/img/background.jpg");
     background-size: cover;
     background-position: center;
+    position: fixed;
   }
 
   .container {
