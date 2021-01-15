@@ -56,7 +56,7 @@ Version 1.5.0
 * Dynamic Changelog.
 * About section updated.
 
-Version 1.7
+Version 1.7.0
 
 :green_book: CV Generator 
 
