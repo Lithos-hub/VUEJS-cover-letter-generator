@@ -49,7 +49,8 @@ Version 1.2.3
 
 Version 1.2.4 
 
-:green_book: CV Generator: 
+:green_book: CV Generator 
+:orange_book: Global 
 
 * Each education form input can be deleted by the user.
 * Dynamic Changelog.
