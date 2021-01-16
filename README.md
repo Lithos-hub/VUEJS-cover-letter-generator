@@ -1,14 +1,17 @@
-# Cover Letter Generator
+# iVitae
 
-This application consists of generating a Curriculum Vitae (available in Version 2.0.0) and a Cover Letter.
+![logo](https://user-images.githubusercontent.com/57297760/104817528-1470c800-5822-11eb-9857-6aeab86c9f94.jpg)
+
+
+This application consists of generating a Curriculum Vitae (available since Version 2.0.0) and a Cover Letter.
+
+// Curriculum Vitae Generator:
+
+The CV Generator allows you to create a CV based on a previously selected template. Fill in the form with the information you wish to generate in the document.
 
 // Cover Letter Generator: 
 
-The user, through a simple form, can enter a series of data such as your name, types of technologies you handle or links to your social networks.
-
-A preview of the document is automatically generated in real time. 
-
-The document can be downloaded in PDF format with a modal window preview.
+The user, through a simple form, can enter a series of data such as your name, types of technologies you handle or links to your social networks. A preview of the document is automatically generated in real time.  The document can be downloaded in PDF format with a modal window preview.
 
 //////////////////////
 
@@ -74,6 +77,14 @@ Version 2.0.0
 * CV Generator first estable version.
 * CV layout improved.
 * User manual added in both generators.
+
+Version 2.0.1 
+
+:orange_book: Global 
+
+
+* New APP name: iVitae and new favicon.
+* Aesthetic changes.
 
 
 ## Project setup

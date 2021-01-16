@@ -12,38 +12,28 @@
     </div>
     <div class="container">
       <v-row no-gutters>
-        <v-col cols="3"></v-col>
-        <v-col cols="6" class="align-center">
-          <div id="center-elements">
-            <h1 id="title">CV / Cover Letter Generator</h1>
+        <v-col lg="3"></v-col>
+        <v-col lg="6" class="align-center">
+          <div id="center-elements" class="secondary darken-2 rounded pa-5">
+            <h1 id="title">iVitae</h1>
 
-            <v-row>
-              <v-col class="ma-auto text-right">
-                <h4 class="white--text">Start making a</h4>
-              </v-col>
-              <v-col class="ma-auto text-left">
-                <router-link to="/select-template" style="text-decoration: none">
-                  <v-btn class="cv-gen-btn d-block btn-animated mr-auto"
-                    >Curriculum Vitae</v-btn
-                  >
-                </router-link>
+            <h4 class="primary--text text-center pa-5">Start making a</h4>
 
-                <router-link to="/cover-letter-generator" style="text-decoration: none">
-                  <v-btn class="cl-gen-btn d-block mt-5 btn-animated mr-auto"
-                    >Cover Letter</v-btn
-                  >
-                </router-link>
-              </v-col>
+            <router-link to="/select-template" style="text-decoration: none">
+              <v-btn class="cv-gen-btn btn-animated" block>Curriculum Vitae</v-btn>
+            </router-link>
 
-              <div class="d-block mt-15">
-                <router-link to="/about" style="text-decoration: none">
-                  <v-btn class="error mt-15 ma-auto btn-animated">About</v-btn>
-                </router-link>
-              </div>
-            </v-row>
+            <router-link to="/cover-letter-generator" style="text-decoration: none">
+              <v-btn class="cl-gen-btn mt-5 btn-animated" block>Cover Letter</v-btn>
+            </router-link>
+          </div>
+          <div class="d-block mt-15">
+            <router-link to="/about" style="text-decoration: none">
+              <v-btn class="error mt-15 ma-auto btn-animated">About</v-btn>
+            </router-link>
           </div>
         </v-col>
-        <v-col cols="3"></v-col>
+        <v-col lg="3"></v-col>
       </v-row>
     </div>
     <v-footer height="60" class="transparent text-right" id="footer">
@@ -79,7 +69,7 @@ export default {
       year: new Date().getFullYear(),
       major: 2,
       minor: 0,
-      patch: 0,
+      patch: 1,
     };
   },
 };
@@ -106,7 +96,7 @@ export default {
 
   #title {
     font-size: 2em;
-    background-image: url("../assets/img/home-title.jpg");
+    background-image: url("../assets/img/gradient2.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
@@ -292,7 +282,7 @@ export default {
 
   #title {
     font-size: 5em;
-    background-image: url("../assets/img/home-title.jpg");
+    background-image: url("../assets/img/gradient1.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;
@@ -476,7 +466,7 @@ export default {
 
   #title {
     font-size: 8em;
-    background-image: url("../assets/img/home-title.jpg");
+    background-image: url("../assets/img/gradient1.jpg");
     background-size: cover;
     background-position: center;
     -webkit-background-clip: text;

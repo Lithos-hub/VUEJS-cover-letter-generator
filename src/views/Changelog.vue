@@ -81,6 +81,13 @@ export default {
             "(Cover Letter Generator and CV Generator) User manual added.",
           ],
         },
+        {
+          version: "2.0.1",
+          changes: [
+            "(Global) New APP name: iVitae and new favicon",
+            "(Global) Aesthetic changes",
+          ],
+        },
       ],
     };
   },
