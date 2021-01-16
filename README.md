@@ -73,7 +73,7 @@ Version 2.0.0
 
 * CV Generator first estable version.
 * CV layout improved.
-* User manual added in both generator.
+* User manual added in both generators.
 
 
 ## Project setup
