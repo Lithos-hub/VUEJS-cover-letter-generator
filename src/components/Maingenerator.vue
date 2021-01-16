@@ -1,6 +1,52 @@
 <template>
   <v-container id="main-container">
     <comeback-btn />
+    <v-dialog v-model="dialog" width="1000">
+      <template v-slot:activator="{ on, attrs }">
+        <v-btn
+          class="d-inline ml-5"
+          large
+          color="orange darken-2"
+          dark
+          v-bind="attrs"
+          v-on="on"
+          >User manual</v-btn
+        >
+      </template>
+
+      <v-card>
+        <v-card-title class="headline orange darken-2 white--text">
+          Cover Letter Generator
+        </v-card-title>
+
+        <v-card-text>
+          <p class="pa-5 text-justify" id="manualuser-text">
+          Cover Letter Generator consists of generating personalized cover letters within the scope of Information Technology. <br /><br>
+          You, through a simple form, can enter a series of data such as your name, types of technologies you handle or links to your social networks. <br /><br />
+          A preview of the document is automatically generated in real time. <br />
+         You can also manipulate the background color of the document or add some of the images provided. Use the side menu options to change the color of the main text by simply typing a color in an input with text, hex or rgb code. <br /><br>
+          Finally, the document can be downloaded in PDF, and you can also preview the PDF with a modal window. <br><br>
+          These are some special resources that have been employed:<br><br>
+          <ul>
+            <li>The <b>VueHtml2pdf</b> library to generate the PDF.</li>
+            <li>The communication between the sidebar component and the document sheet.</li>
+            <li>
+              Some interesting v-if conditions. For example, if the user chooses the option "No experience", it is logical that the list of companies where he has been working does not appear. Something similar happens when you choose experience: if you choose "less than 2 years" option, that
+              information will appear in the document as "Junior".
+            </li>
+            <li>Funtionalities of this module will be improving with future versions (like the PDF generation), adding new features too.</li>
+          </ul>
+          </p>
+        </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="red darken-2" dark block @click="dialog = false">Ok!</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
     <v-btn color="red darken-2" dark tile large @click="savePDF" id="download-pdf-btn"
       >Download PDF
       <v-icon right dark> mdi-download </v-icon>
@@ -442,6 +488,7 @@ export default {
   data() {
     return {
       imageUrl: "",
+      dialog: false,
       image: null,
       fullname: "",
       age: "",
@@ -573,6 +620,12 @@ export default {
 
 // ******* MOBILE RESPONSIVE ******* //
 @media only screen and (min-width: 360px) {
+  #manualuser-text {
+    font-size: 25px;
+    font-family: $style3;
+    line-height: 35px;
+  }
+
   #right-sheet {
     display: none;
   }
@@ -589,13 +642,11 @@ export default {
     text-decoration: none;
     position: relative;
     left: 0px;
-    z-index: 99999;
   }
 
   #download-pdf-btn {
     position: relative;
     right: 0px;
-    z-index: 99999;
   }
 
   #upload-image-btn {
@@ -698,6 +749,12 @@ export default {
 }
 // ******* LAPTOP RESPONSIVE ******* //
 @media only screen and (min-width: 767px) {
+  #manualuser-text {
+    font-size: 25px;
+    font-family: $style3;
+    line-height: 35px;
+  }
+
   #right-sheet {
     display: block;
     position: relative;
@@ -717,13 +774,12 @@ export default {
     text-decoration: none;
     position: absolute;
     left: 0px;
-    z-index: 99999;
   }
 
   #download-pdf-btn {
     position: absolute;
     right: 0px;
-    z-index: 99999;
+
   }
 
   #upload-image-btn {
@@ -827,6 +883,12 @@ export default {
 
 // ******* DESKTOP RESPONSIVE ******* //
 @media only screen and (min-width: 1370px) {
+  #manualuser-text {
+    font-size: 25px;
+    font-family: $style3;
+    line-height: 35px;
+  }
+
   #left-sheet {
     font-size: 20px;
   }
@@ -850,13 +912,12 @@ export default {
     text-decoration: none;
     position: absolute;
     left: 0px;
-    z-index: 99999;
+
   }
 
   #download-pdf-btn {
     position: absolute;
     right: 0px;
-    z-index: 99999;
   }
 
   #upload-image-btn {

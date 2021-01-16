@@ -1,10 +1,14 @@
 <template>
   <div>
+    <v-btn block color="red darken-2" dark large @click="savePDF" class="my-2"
+      >Generate PDF</v-btn
+    >
     <v-sheet
       width="100%"
       height="100%"
-      elevation="10"
+      elevation="15"
       class="pa-5 secondary darken-2 rounded"
+      id="CV-formulary"
     >
       <v-row class="white--text">
         <!-- LEFT COLUMN -->
@@ -167,7 +171,6 @@
         <v-col>
           <!-- ****************************** EDUCATION ****************************** -->
           <h4>Education</h4>
-
           <v-row v-for="(item, i) in info_json.education" :key="i">
             <v-col cols="4">
               <v-text-field
@@ -204,18 +207,14 @@
             >
           </v-row>
           <!-- ****************************** EXPERIENCE ****************************** -->
+          <h4 class="my-5">Experience</h4>
           <v-btn
             block
-            @click="info_json.haveExperience = true"
-            :class="
-              info_json.haveExperience && info_json.experience.length > 0
-                ? 'd-none'
-                : 'success'
-            "
+            @click="info_json.haveExperience = !info_json.haveExperience"
+            :class="info_json.haveExperience ? 'd-none' : 'success'"
             >I have experience</v-btn
           >
           <div v-if="info_json.haveExperience && info_json.experience.length > 0">
-            <h4 class="my-5">Experience</h4>
             <v-row v-for="(item, i) in info_json.experience" :key="'A' + i" no-gutters>
               <v-col cols="4">
                 <v-text-field
@@ -382,27 +381,32 @@
           </v-container>
         </v-col>
       </v-row>
-      <!-- <v-btn block color="red darken-2" dark large @click="savePDF">Generate PDF</v-btn> -->
     </v-sheet>
 
-    <v-container id="document-container">
-      <vue-html2pdf
-        :show-layout="true"
-        :float-layout="false"
-        :enable-download="true"
-        :preview-modal="true"
-        :paginate-elements-by-height="1100"
-        filename="My card"
-        :pdf-quality="2"
-        :manual-pagination="true"
-        pdf-format="a4"
-        pdf-orientation="portrait"
-        pdf-content-width="1240px"
-        ref="html2Pdf"
-      >
-        <CVAlea :info_json="info_json" slot="pdf-content" />
-      </vue-html2pdf>
-    </v-container>
+    <div class="row">
+      <div class="col"></div>
+      <div class="col" id="document-col">
+        <vue-html2pdf
+          :show-layout="false"
+          :float-layout="true"
+          :enable-download="false"
+          :preview-modal="true"
+          :paginate-elements-by-height="1125"
+          filename="My CV"
+          :pdf-quality="2"
+          :manual-pagination="true"
+          pdf-format="a4"
+          pdf-orientation="portrait"
+          pdf-content-width="800px"
+          ref="html2Pdf"
+        >
+          <section slot="pdf-content">
+            <CVAlea :info_json="info_json" />
+          </section>
+        </vue-html2pdf>
+      </div>
+      <div class="col"></div>
+    </div>
   </div>
 </template>
 
@@ -432,51 +436,47 @@ export default {
           { icon: "mdi-at", info: "" },
           { icon: "mdi-web", info: "" },
         ],
-        name: "Lorem",
-        lastName: "Ipsum Dolor",
-        birthdate: 1992,
-        position: "My position",
-        mob_number: "000 00 00 00",
-        tel_number: "000 00 00 00",
-        email: "mymail@example.com",
-        website: "www.mywebsiteexample.com",
+        name: "",
+        lastName: "",
+        birthdate: "",
+        position: "",
+        mob_number: "",
+        tel_number: "",
+        email: "",
+        website: "",
         imageUrl: "",
         image: null,
         education: [
-          { centerName: "Center #1", studiesName: "Studies #1", period: "Period 1" },
-          { centerName: "Center #2", studiesName: "Studies #2", period: "Period 2" },
-          { centerName: "Center #3", studiesName: "Studies #3", period: "Period 3" },
-          { centerName: "Center #4", studiesName: "Studies #4", period: "Period 4" },
+          { centerName: "", studiesName: "", period: "" },
+          { centerName: "", studiesName: "", period: "" },
+          { centerName: "", studiesName: "", period: "" },
+          { centerName: "", studiesName: "", period: "" },
         ],
         haveExperience: false,
         experience: [
           {
-            companyName: "Company 1",
-            positionName: "Position 1",
-            period: "Period1",
-            textarea:
-              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed iusto veniam cum cumque voluptas qui ipsa molestiae perspiciatis aut reprehenderit, ut illum soluta fugiat id ab labore magni veritatis",
+            companyName: "",
+            positionName: "",
+            period: "",
+            textarea: "",
           },
           {
-            companyName: "Company 2",
-            positionName: "Position 2",
-            period: "Period2",
-            textarea:
-              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed iusto veniam cum cumque voluptas qui ipsa molestiae perspiciatis aut reprehenderit, ut illum soluta fugiat id ab labore magni veritatis",
+            companyName: "",
+            positionName: "",
+            period: "",
+            textarea: "",
           },
           {
-            companyName: "Company 3",
-            positionName: "Position 3",
-            period: "Period3",
-            textarea:
-              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed iusto veniam cum cumque voluptas qui ipsa molestiae perspiciatis aut reprehenderit, ut illum soluta fugiat id ab labore magni veritatis",
+            companyName: "",
+            positionName: "",
+            period: "",
+            textarea: "",
           },
           {
-            companyName: "Company 4",
-            positionName: "Position 4",
-            period: "Period4",
-            textarea:
-              "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed iusto veniam cum cumque voluptas qui ipsa molestiae perspiciatis aut reprehenderit, ut illum soluta fugiat id ab labore magni veritatis",
+            companyName: "",
+            positionName: "",
+            period: "",
+            textarea: "",
           },
         ],
         select1: [],
@@ -628,7 +628,12 @@ export default {
 
 #document-container {
   position: relative;
-  padding-bottom: 200px;
+  margin: 0 auto;
+  padding-bottom: 20px;
   transform: scale(1);
+}
+
+#document-col {
+  margin-top: 20px;
 }
 </style>

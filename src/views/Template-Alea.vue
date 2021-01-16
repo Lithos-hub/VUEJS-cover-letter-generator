@@ -5,40 +5,45 @@
     <v-container class="mt-15 text-center">
       <comeback-btn class="comeback-btn d-inline" />
 
-      <v-dialog v-model="dialog" width="500">
+      <v-dialog v-model="dialog" width="800">
         <template v-slot:activator="{ on, attrs }">
           <v-btn
             class="d-inline ml-5"
             large
             color="orange darken-2"
             dark
-            id="readme-btn"
             v-bind="attrs"
             v-on="on"
-            >Read me!</v-btn
+            >User manual</v-btn
           >
         </template>
 
         <v-card>
           <v-card-title class="headline orange darken-2 white--text">
-            Curriculum Vitae Generator
+            CV Generator
           </v-card-title>
 
           <v-card-text>
-            <h4 class="font-weight-bold pa-5">
-              CV Generator will be a somewhat more powerful and precise tool than the
-              Cover Letter Generator. <br /><br />
-              It is still under development, so it does not work yet. I hope to have
-              finished it soon, so in the meantime, you can explore the code and the
-              different options it will have in the future.
-            </h4>
+            <p class="pa-5 text-justify" id="manualuser-text">
+              The CV Generator allows you to create a CV based on a previously selected
+              template. Fill in the form with the information you wish to generate in the
+              document.
+              <br /><br />
+              You can delete some inputs in Education, Experience, Complementary education
+              and Technical Skills sections, so you may use only those you need. In these
+              last two you can delete all the information by clicking on the red cross to
+              the right of the input.
+              <br /><br />
+              When you are ready, generate the CV in PDF format with a modal window and
+              download it if you wish.
+            </p>
           </v-card-text>
 
           <v-divider></v-divider>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="red darken-2" dark @click="dialog = false">Close </v-btn>
+            <v-btn color="red darken-2" dark block @click="dialog = false">Ok!</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -82,5 +87,11 @@ export default {
 }
 .comeback-btn {
   margin: 0 auto;
+}
+
+#manualuser-text {
+  font-size: 25px;
+  font-family: $style3;
+  line-height: 35px;
 }
 </style>

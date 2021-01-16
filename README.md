@@ -16,20 +16,20 @@ The document can be downloaded in PDF format with a modal window preview.
 
 Version 1.1.0
 
-:blue_book: Cover Letter Generator:
+:blue_book: Cover Letter Generator
 
 * Fixes and changes in generator system.
 
 Version 1.2.0
 
-:orange_book: Global:
+:orange_book: Global
 
 * Added error 404 page.
 * Early version of the new CV generator.
 
 Version 1.2.1
 
-:orange_book: Global: 
+:orange_book: Global
 
 * Aesthetic improvements.
 
@@ -41,7 +41,7 @@ Version 1.3.0
 
 Version 1.4.0 
 
-:green_book: CV Generator: 
+:green_book: CV Generator
 
 * Improvements in CV generator. 
 * Experience form is now dynamic.
@@ -65,6 +65,15 @@ Version 1.7.0
 * Technical skills added.
 * Optimiced code.
 * Smart behavior in the information generation.
+
+Version 2.0.0
+
+:green_book: CV Generator 
+:blue_book: Cover Letter Generator
+
+* CV Generator first estable version.
+* CV layout improved.
+* User manual added in both generator.
 
 
 ## Project setup

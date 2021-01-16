@@ -73,6 +73,14 @@ export default {
             "(CV Generator) Smart behavior in the information generation.",
           ],
         },
+        {
+          version: "2.0.0",
+          changes: [
+            "(CV Generator) CV Generator first estable version.",
+            "(CV Generator) CV layout improved.",
+            "(Cover Letter Generator and CV Generator) User manual added.",
+          ],
+        },
       ],
     };
   },

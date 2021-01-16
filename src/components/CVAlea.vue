@@ -1,31 +1,33 @@
 <template>
   <div id="document">
-    <v-row>
+    <div class="row no-gutters">
       <!-- MAIN CONTENT -->
-      <v-col cols="8" id="main-col">
+      <div class="col-lg-8" id="main-col">
         <!-- NAME -->
         <h1 id="fullname">{{ info_json.name }} {{ info_json.lastName }}</h1>
         <h2 id="position-h1">{{ info_json.position }}</h2>
         <!-- EDUCATION -->
-        <h4>Education</h4>
-        <div class="divider"></div>
-        <div v-for="(item, i) in info_json.education" :key="'A' + i">
-          <h5>
-            {{ item.centerName }} -
-            <span id="studies_name">{{ item.studiesName }}</span>
-          </h5>
-          <small>{{ item.period }}</small>
+        <div v-if="info_json.education.length > 0">
+          <div class="divider"></div>
+          <h4>Education</h4>
+          <div v-for="(item, i) in info_json.education" :key="'A' + i">
+            <div class="period">{{ item.period }}</div>
+            <h5>
+              {{ item.centerName }} -
+              <span id="studies_name">{{ item.studiesName }}</span>
+            </h5>
+          </div>
         </div>
         <!-- EXPERIENCE -->
         <div v-if="info_json.haveExperience && info_json.experience.length > 0">
-          <h4>Experience</h4>
           <div class="divider"></div>
+          <h4>Experience</h4>
           <div v-for="(item, i) in info_json.experience" :key="'B' + i">
+            <div class="period">{{ item.period }}</div>
             <h5>
               {{ item.companyName }} -
-              <span id="studies_name">{{ item.positionName }}</span>
+              <span id="position_name">{{ item.positionName }}</span>
             </h5>
-            <small>{{ item.period }}</small>
             <p>{{ item.textarea }}</p>
           </div>
         </div>
@@ -37,56 +39,58 @@
             info_json.otherskills_selected.length > 0
           "
         >
-          <h4 class="white--color">Aditional information</h4>
-          <div id="aditional-info-section" class="pt-5">
+          <h4>Aditional information</h4>
+          <div id="aditional-info-section">
             <div v-if="info_json.lang_selected.length > 0">
-              <h6 class="cyan--text">Spoken languages:</h6>
-              <v-row no-gutters>
-                <v-col
-                  cols="4"
+              <h6 class="aditional-h6">Spoken languages:</h6>
+              <div class="row no-gutters">
+                <div
+                  class="col-lg-4"
                   v-for="(item, i) in info_json.lang_selected"
                   :key="'C' + i"
                 >
                   <p id="spoken-languages">
                     {{ item.name }}
                   </p>
-                </v-col>
-              </v-row>
+                </div>
+              </div>
             </div>
             <div v-if="info_json.softskills_selected.length > 0">
-              <h6 class="cyan--text">Soft skills:</h6>
-              <v-row no-gutters>
-                <v-col
-                  cols="4"
+              <h6 class="aditional-h6">Soft skills:</h6>
+              <div class="row no-gutters">
+                <div
+                  class="col-lg-4"
                   v-for="(item, i) in info_json.softskills_selected"
                   :key="'D' + i"
                 >
                   <p id="soft-skills">
                     {{ item }}
                   </p>
-                </v-col>
-              </v-row>
+                </div>
+              </div>
             </div>
             <div v-if="info_json.otherskills_selected.length > 0">
-              <h6 class="cyan--text">Other skills:</h6>
+              <h6 class="aditional-h6">Other skills:</h6>
 
-              <v-row class="other-skills">
-                <v-col
-                  cols="4"
-                  v-for="(item, i) in info_json.otherskills_selected"
-                  :key="'D' + i"
-                >
-                  <p id="other-skills">
-                    {{ item }}
-                  </p>
-                </v-col>
-              </v-row>
+              <div class="other-skills">
+                <div class="row no-gutters">
+                  <div
+                    class="col-lg-4"
+                    v-for="(item, i) in info_json.otherskills_selected"
+                    :key="'D' + i"
+                  >
+                    <p id="other-skills">
+                      {{ item }}
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <!-- COMPLEMENTARY EDUCATION -->
         <div v-if="info_json.comp_education.length > 0">
-          <h4 class="white--color">Complementary education</h4>
+          <h4>Complementary education</h4>
           <ul style="list-style: none">
             <li v-for="(item, i) in info_json.comp_education" :key="'D' + i">
               <p id="comp_education_list">
@@ -97,8 +101,8 @@
           <div class="divider"></div>
         </div>
         <!-- SIDE COLUMN CONTENT -->
-      </v-col>
-      <v-col cols="3" id="side-col">
+      </div>
+      <div class="col-lg-3" id="side-col">
         <!-- IMAGE -->
         <v-img
           v-if="info_json.image"
@@ -116,8 +120,10 @@
           <!-- CONTACT -->
           <h5>Contact</h5>
           <div v-for="(item, i) in info_json.contact_info" :key="i">
-            <v-icon class="side-menu-icons">{{ item.icon }}</v-icon>
-            <div>{{ item.info }}</div>
+            <v-icon class="side-menu-icons" v-if="item.info.length > 0">{{
+              item.icon
+            }}</v-icon>
+            <div id="contact-text">{{ item.info }}</div>
           </div>
           <hr />
           <!-- TECHNICAL SKILLS -->
@@ -130,8 +136,8 @@
             </div>
           </div>
         </div>
-      </v-col>
-    </v-row>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -145,40 +151,53 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @import "src/scss/variables";
 
 #document {
   position: relative;
-  margin: 0 auto;
-  height: 1750px;
-  width: 1240px;
-  background: white;
-  border: 1px solid black;
+  height: 1120px;
+  width: 800px;
+}
+
+div {
+  text-align: center;
 }
 
 h4 {
   text-align: center;
-  font-size: 2em;
+  font-size: 1.2em;
   color: $primary;
 }
 
 h5 {
+  text-align: center;
   font-weight: bold;
+  font-size: 14px;
 }
 
 p {
-  text-align: justify;
-  margin-left: 50px;
-  margin-right: 50px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 12px;
+}
+
+.period {
+  text-align: center;
+  font-size: 10px;
 }
 
 .divider {
   height: 10px;
   background: $alea_primary;
   width: 100%;
-  margin-bottom: 20px;
-  border-radius: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.aditional-h6 {
+  color: cyan;
+  text-align: center;
 }
 
 span:first-child {
@@ -187,18 +206,20 @@ span:first-child {
 
 #main-col {
   position: relative;
-  margin: 30px;
+  margin: 20px;
 }
 
 #fullname {
-  font-size: 5em;
+  text-align: center;
+  font-size: 2em;
   font-weight: bold;
   text-transform: uppercase;
   color: $alea_primary;
   font-family: $style5;
 }
 #position-h1 {
-  font-size: 3em;
+  text-align: center;
+  font-size: 1em;
   font-weight: bold;
   text-transform: uppercase;
   font-family: $style3;
@@ -214,13 +235,13 @@ span:first-child {
 
 #spoken-languages,
 #soft-skills {
-  font-size: 18px;
+  font-size: 14px;
   color: white;
   text-align: center;
 }
 
 .other-skills {
-  font-size: 18px;
+  font-size: 14px;
   color: white;
   text-align: center;
 }
@@ -231,12 +252,19 @@ span:first-child {
   top: 0px;
   right: 0px;
   bottom: 0px;
+  padding: 10px;
+}
+
+#cv-image {
+  margin: 5px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 #sidemenu-main-information {
   margin-top: 50px;
   color: white;
-  font-size: 20px;
+  font-size: 14px;
   text-align: center;
   font-family: $style5;
 
@@ -245,7 +273,7 @@ span:first-child {
   }
 
   h5 {
-    font-size: 1.5em;
+    font-size: 14px;
     font-weight: normal;
     letter-spacing: 5px;
     margin-bottom: 20px;
@@ -254,16 +282,22 @@ span:first-child {
 }
 
 #sidemenu-superior-info {
-  font-size: 25px;
+  font-size: 18px;
+}
+
+#contact-text {
+  font-size: 12px;
 }
 
 .side-menu-icons {
-  color: white !important;
-  font-size: 1.5em !important;
+  color: $primary !important;
+  font-size: 18px !important;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #technical-skills {
   text-align: center;
+  font-size: 12px;
 }
 </style>
