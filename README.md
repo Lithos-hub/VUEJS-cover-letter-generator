@@ -1,6 +1,6 @@
 # iVitae
 
-![logo](https://user-images.githubusercontent.com/57297760/104817528-1470c800-5822-11eb-9857-6aeab86c9f94.jpg)
+![logo](https://user-images.githubusercontent.com/57297760/104817653-dd4ee680-5822-11eb-9fb2-a2959190651f.jpg)
 
 
 This application consists of generating a Curriculum Vitae (available since Version 2.0.0) and a Cover Letter.
